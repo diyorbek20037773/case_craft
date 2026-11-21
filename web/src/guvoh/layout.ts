@@ -222,6 +222,11 @@ export function debugShot(view: string | null): Shot | null {
       return { pos: v(-3.4, 1.3, 4.3), target: v(-3.4, 0.7, 1.9), fov: 40 }
     case 'dock':
       return { pos: v(1.2, 1.4, 5.1), target: v(3.5, 0.7, 5.2), fov: 40 }
+    // yelka/qo'l tekshiruvi: oldidan, belidan boshigacha
+    case 'judge-close':
+      return { pos: v(0.3, 1.45, -0.9), target: v(0.28, 1.3, -2.42), fov: 35 }
+    case 'prosecutor-close':
+      return { pos: v(-1.95, 1.2, 2.05), target: v(-3.44, 1.05, 1.9), fov: 35 }
     case 'plan':
       return { pos: v(0.2, 11.5, 1.8), target: v(0.2, 0, 1.6), fov: 60 }
     default:
