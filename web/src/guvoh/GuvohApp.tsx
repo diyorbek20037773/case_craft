@@ -48,7 +48,9 @@ export function GuvohApp() {
     const t = new URLSearchParams(window.location.search).get('tier')
     return t === '0' || t === '1' || t === '2' ? (Number(t) as Tier) : null
   }, [])
-  const [tier, setTier] = useState<Tier>(lockedTier ?? (mobile ? 0 : 2))
+  // Noutbukda o'rta sifatdan boshlanadi: AdaptiveQuality 4 s dan keyin ishga tushadi — FPS yetarli bo'lsa 2 ga ko'taradi.
+  // 2 dan boshlansa, sekin kompyuterda birinchi soniyalar qotib qolardi.
+  const [tier, setTier] = useState<Tier>(lockedTier ?? (mobile ? 0 : 1))
   const [cam, setCam] = useState<CameraMode>('auto')
   const [muted, setMuted] = useState(false)
   useEffect(() => setVoiceMuted(muted), [muted])

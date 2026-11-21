@@ -1,5 +1,6 @@
 // Kanvas: HDRI yorug'lik + quyosh (deraza orqali) + yuz uchun yumshoq "key" nur + shift chiroqlari, soyalar, postprocessing.
-// Sifat darajalari: 2 — noutbuk (N8AO, bloom, SMAA, 2048 soya, haqiqiy shisha), 1 — o'rta, 0 — telefon/sekin (AO yo'q).
+// Sifat darajalari: 2 — kuchli noutbuk (N8AO, bloom, SMAA, 2048 soya, haqiqiy shisha), 1 — o'rta (noutbukda boshlang'ich),
+// 0 — telefon/sekin (AO yo'q).
 // PerformanceMonitor FPS tushsa darajani pasaytiradi.
 import { Environment, PerformanceMonitor } from '@react-three/drei'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
@@ -70,7 +71,7 @@ export function Scene({ mobile, tier, onTier, lockTier, debug, stageName = '' }:
       <color attach="background" args={['#1a1410']} />
       <Suspense fallback={null}>
         {!lockTier && <AdaptiveQuality tier={tier} maxTier={mobile ? 1 : 2} onTier={onTier} />}
-        <Environment files={mobile ? '/env/old_hall_1k.hdr' : '/env/church_meeting_room_2k.hdr'} environmentIntensity={0.42} />
+        <Environment files={mobile ? '/env/old_hall_1k.hdr' : '/env/church_meeting_room_1k.hdr'} environmentIntensity={0.42} />
         <Lights tier={tier} />
         <Hall mobile={mobile} tier={tier} stageName={stageName} />
         <Witness mobile={mobile} position={WITNESS_POS} rotationY={WITNESS_ROT_Y} debug={debug} />

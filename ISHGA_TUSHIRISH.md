@@ -29,21 +29,19 @@ Kalitni hech kimga yubormang va `.env` faylini boshqalarga bermang.
 - Python va Node.js borligini tekshiradi;
 - birinchi safar kutubxonalarni o'rnatadi (5-10 daqiqa, internet tezligiga bog'liq; keyingi safar o'tkazib yuboriladi);
 - ikkita oyna ochadi: **CaseCraft backend** (port 8000) va **CaseCraft frontend** (port 5173) - ularni yopmang;
-- brauzerda kirish sahifasini ochadi.
+- frontendni tayyor (siqilgan, yengil) holatga keltiradi - har safar 10-60 soniya (`npm run build`), so'ng `npm run preview`;
+- sahifa tayyor bo'lgach brauzerda kirish sahifasini ochadi.
 
 To'xtatish: ikkala oynani yoping.
 
-### Tezroq variant (demo uchun, ixtiyoriy)
+### Ishlab chiqish rejimi (kod yozayotganlar uchun)
 
-.bat frontendni ishlab chiqish rejimida (`npm run dev`) ochadi - birinchi sahifa ochilishi biroz sekin bo'lishi mumkin.
-Taqdimotda tezroq ishlashi uchun (.bat backendni ochgandan keyin) frontend oynasini yoping va `web` papkasida
-yangi oyna (cmd) ochib yozing:
+Kod o'zgarishi darhol ko'rinishi kerak bo'lsa (build kutmasdan), cmd'da:
 ```
-npm run build
-npm run preview
+set CC_DEV=1
+ISHGA_TUSHIRISH.bat
 ```
-So'ng manzillar **4173**-portda bo'ladi: http://localhost:4173/intro.html, /guvoh.html, /teacher.html.
-Backend localhost'ning istalgan portiga ruxsat beradi, qo'shimcha sozlash kerak emas.
+Bu rejim (`npm run dev`) sekinroq - sahifa yuzlab alohida fayllar bilan yuklanadi.
 
 ## 4. Manzillar
 

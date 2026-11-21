@@ -3,7 +3,7 @@
 Barcha fayllar Poly Haven (https://polyhaven.com) dan, litsenziya CC0 (atribut majburiy emas, hurmat uchun yozildi). Akkaunt kerak bo'lmagan.
 
 HDRI (hdr, equirect):
-- church_meeting_room_2k.hdr (6,8 MB) - Dario Barresi - https://polyhaven.com/a/church_meeting_room
+- church_meeting_room_1k.hdr (1,7 MB; 2k asldan 2x kichraytirilgan) - Dario Barresi - https://polyhaven.com/a/church_meeting_room
 - entrance_hall_2k.hdr (6,3 MB) - Sergej Majboroda - https://polyhaven.com/a/entrance_hall
 - vestibule_2k.hdr (6,5 MB) - Sergej Majboroda - https://polyhaven.com/a/vestibule
 - old_hall_1k.hdr (1,7 MB) - Sergej Majboroda - https://polyhaven.com/a/old_hall

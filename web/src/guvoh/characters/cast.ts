@@ -8,6 +8,7 @@ import * as THREE from 'three'
 import type { ArmsConfig } from '../arms'
 import { DESK, WITNESS_HEAD } from '../layout'
 import type { Speaker } from '../session'
+import type { SeatedPostureConfig } from './seatedPosture'
 
 export type SeatedRole = 'judge' | 'prosecutor' | 'clerk' | 'defendant'
 
@@ -24,6 +25,8 @@ export interface CastSpec {
   faceLocal: number
   /** qo'l yumshatish (arms.ts) — sit_idle pozasiga nisbatan, gradus. Sudya alohida tekshirilgan */
   arms: Partial<ArmsConfig>
+  /** yelka qaddi (seatedPosture.ts) — standartdan farqlar */
+  posture?: Partial<SeatedPostureConfig>
   /**
    * sit_idle dan faqat shu oraliq (asl klip soniyalari, oxiri klip uzunligidan oshsa — boshiga o'raladi) ping-pong
    * aylantiriladi. Sabab: Meshy "Sitting Idle" klipining 1,8–8,0 s qismida odam oldinga 0,4 m engashib, boshini

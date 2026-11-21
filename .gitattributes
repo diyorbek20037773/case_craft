@@ -1,0 +1,6 @@
+* text=auto
+# Windows cmd LF bilan yorliqlarni (goto) noto'g'ri o'qishi mumkin
+*.bat text eol=crlf
+*.sh text eol=lf
+*.hdr binary
+*.glb binary

@@ -15,6 +15,7 @@ import { SpeakerContext, type Speaker } from '../session'
 import { turnBone } from './bones'
 import { headOf, PLACEMENT, SEATED_ARMS, type CastSpec } from './cast'
 import { court } from './court'
+import { applySeatedPosture, SEATED_POSTURE, type PostureSide, type SeatedPostureConfig } from './seatedPosture'
 
 export const characterUrl = (model: string, mobile: boolean) => `/models/meshy/${model}${mobile ? '-mobile' : ''}.glb`
 
@@ -65,6 +66,7 @@ export function Character({ spec, mobile, debug }: Props) {
   const root = useRef<THREE.Group>(null)
   const place = PLACEMENT[spec.role]
   const cfg = useMemo<ArmsConfig>(() => ({ ...SEATED_ARMS, ...spec.arms }), [spec.arms])
+  const posture = useMemo<SeatedPostureConfig>(() => ({ ...SEATED_POSTURE, ...spec.posture }), [spec.posture])
 
   const rig = useMemo(() => {
     const scene = gltf.scene
@@ -97,7 +99,10 @@ export function Character({ spec, mobile, debug }: Props) {
     const touched = [bones.neck, bones.head, ...sides.flatMap((s) => [s.shoulder, s.arm, s.fore, s.hand])].filter(
       (o): o is THREE.Object3D => !!o,
     )
-    return { scene, bones, sides, touched }
+    const posture: PostureSide[] = sides.flatMap((s, i) =>
+      s.shoulder && s.arm && s.fore ? [{ sign: i === 0 ? 1 : -1, shoulder: s.shoulder, arm: s.arm, fore: s.fore } as PostureSide] : [],
+    )
+    return { scene, bones, sides, touched, posture }
   }, [gltf.scene])
 
   const mixer = useMemo(() => new THREE.AnimationMixer(rig.scene), [rig.scene])
@@ -201,6 +206,9 @@ export function Character({ spec, mobile, debug }: Props) {
     g.updateMatrixWorld(true)
     g.getWorldQuaternion(tmp.qRoot)
     tmp.qInv.copy(tmp.qRoot).invert()
+
+    // ---------- 2b) yelka qaddi: klipdagi osilgan o'mrovni ko'tarish, tirsakni tanaga yaqinlashtirish ----------
+    applySeatedPosture(rig.posture, posture, tmp.qRoot)
 
     // ---------- 3) nigoh ----------
     const phase = director.phase

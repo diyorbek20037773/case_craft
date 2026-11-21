@@ -102,10 +102,17 @@ if errorlevel 1 (
 )
 
 rem ---------- 7. Frontend ----------
+rem Standart: tayyor build (siqilgan, yengil) - npm run build + npm run preview. Har ishga tushirishda qayta build
+rem qilinadi (kod yangilangan bo'lsa ham eskisi ochilmasin), 10-60 soniya. CC_DEV=1 - eski ishlab chiqish rejimi (npm run dev).
 netstat -ano | findstr /r /c:":%CC_FRONT_PORT% .*LISTENING" >nul
 if errorlevel 1 (
-  echo [..] Frontend ishga tushmoqda: http://localhost:%CC_FRONT_PORT%
-  start "CaseCraft frontend (yopmang)" /D "%ROOT%web" cmd /k "npm run dev -- --port %CC_FRONT_PORT% --strictPort"
+  if "%CC_DEV%"=="1" (
+    echo [..] Frontend ishlab chiqish rejimida ishga tushmoqda: http://localhost:%CC_FRONT_PORT%
+    start "CaseCraft frontend (yopmang)" /D "%ROOT%web" cmd /k "npm run dev -- --port %CC_FRONT_PORT% --strictPort"
+  ) else (
+    echo [..] Frontend tayyorlanmoqda ^(build, 10-60 soniya^), so'ng: http://localhost:%CC_FRONT_PORT%
+    start "CaseCraft frontend (yopmang)" /D "%ROOT%web" cmd /k "npm run build && npm run preview -- --port %CC_FRONT_PORT% --strictPort"
+  )
 ) else (
   echo [!] %CC_FRONT_PORT%-port band. Frontend allaqachon ishlayotgan bo'lishi mumkin.
 )
@@ -117,7 +124,7 @@ set /a TRIES=0
 set /a TRIES+=1
 "%SystemRoot%\System32\curl.exe" -s -o nul -f "http://localhost:%CC_FRONT_PORT%/intro.html" >nul 2>&1
 if not errorlevel 1 goto :ready
-if %TRIES% geq 60 goto :ready
+if %TRIES% geq 240 goto :ready
 ping -n 2 127.0.0.1 >nul
 goto :wait_loop
 :ready
