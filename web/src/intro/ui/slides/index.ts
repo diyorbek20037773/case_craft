@@ -1,0 +1,5 @@
+// Ommaviy API: import { RoleSlides, slidesData } from './ui/slides'
+export { RoleSlides } from './RoleSlides'
+export type { RoleSlidesProps } from './RoleSlides'
+export { slidesData } from './slidesData'
+export type { Passport, RoleDeck, Slide, SlideIcon, SlideKind, SlideRole } from './slidesData'

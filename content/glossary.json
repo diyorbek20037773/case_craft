@@ -1,0 +1,24 @@
+{
+  "note_uz": "UI va AI uchun atamalar. «correct» ishlatiladi, «incorrect» ro'yxatidagi so'zlar UI va AI javoblarida ishlatilmaydi. Yurist tasdiqlashi kerak.",
+  "terms": [
+    {"correct": "raislik qiluvchi", "incorrect": ["sudya (rasmiy gapda)", "judge", "sud raisi (hamma holatda)"], "note_uz": "JPK 408-modda sarlavhasi. Murojaat: «Hurmatli sud». Kundalik tilda «sudya» ruxsat etiladi, lekin rasmiy matnda «raislik qiluvchi»."},
+    {"correct": "himoyachi", "incorrect": ["advokat (talaba uchun)", "lawyer", "vakil", "adovkat"], "note_uz": "Talaba mashqda himoyachi roli. JPK 49-modda."},
+    {"correct": "sudlanuvchi", "incorrect": ["ayblanuvchi (sud majlisida)", "mijoz", "defendant", "gumonlanuvchi"], "note_uz": "Ish sudda ko'rilayotganda shaxs sudlanuvchi deb ataladi (yurist tasdiqlasin)."},
+    {"correct": "davlat ayblovchisi (prokuror)", "incorrect": ["obvinitel", "ayblovchi advokat", "prosecutor"], "note_uz": "JPK 409-modda: prokuror sud muhokamasida."},
+    {"correct": "sud majlisi kotibi", "incorrect": ["sekretar", "yozuvchi", "protokolchi"], "note_uz": "JPK 32-modda."},
+    {"correct": "bayonnoma", "incorrect": ["protokol", "stenogramma", "yozuv"], "note_uz": "Sud majlisining bayonnomasi, JPK 426-modda."},
+    {"correct": "sud tergovi", "incorrect": ["sud tekshiruvi (umumiy)", "tergov (sudda)", "investigation"], "note_uz": "JPK 52-bob. Sudda dalillarni tekshirish bosqichi."},
+    {"correct": "taraflar muzokarasi (sud muzokarasi)", "incorrect": ["prenie", "debat", "final nutq", "closing argument"], "note_uz": "JPK 53-bob, 449-modda."},
+    {"correct": "sudlanuvchining oxirgi so'zi", "incorrect": ["oxirgi gap", "yakuniy so'z (rasmiy)"], "note_uz": "JPK 451-modda."},
+    {"correct": "guvoh", "incorrect": ["gvoh", "witness", "ko'rgan odam"], "note_uz": ""},
+    {"correct": "guvohni so'roq qilish", "incorrect": ["cross-examination", "kross-so'roq", "guvohni gapirtirish"], "note_uz": "JPK 442-modda. «Cross» tushunchasi JPK da yo'q."},
+    {"correct": "yo'naltiruvchi (ishora qiluvchi) savol", "incorrect": ["leading question", "objection", "e'tiroz!", "provokatsion savol"], "note_uz": "JPK 102-modda sarlavhasi: «ishora qiluvchi savollar». Yo'naltiruvchi savolni raislik qiluvchi o'zi rad etadi, tomon «objection» demaydi."},
+    {"correct": "ayblov", "incorrect": ["da'vo", "arz"], "note_uz": "Jinoyat ishida da'vo emas, ayblov."},
+    {"correct": "hukm", "incorrect": ["qaror (jinoyat ishi bo'yicha yakuniy)", "verdict"], "note_uz": "Mashqda hukm chiqarilmaydi, AI yakuniy qaror qabul qilmaydi."},
+    {"correct": "dalil", "incorrect": ["isbot (ob'ekt sifatida)", "evidence (ingliz)"], "note_uz": ""},
+    {"correct": "iltimos", "incorrect": ["petitsiya", "arizachi"], "note_uz": "JPK 438-modda: iltimoslar qilish va ularni hal etish."},
+    {"correct": "sud majlisi", "incorrect": ["sud jarayoni (aniq majlis uchun)", "trial", "hearing"], "note_uz": ""},
+    {"correct": "o'quv mashqi", "incorrect": ["real sud", "haqiqiy ish", "sud qarori"], "note_uz": "Ekranda «AI o'quv simulyatsiyasi, real sud qarori emas» yorlig'i."},
+    {"correct": "to'qima (sintetik) ish", "incorrect": ["haqiqiy ish", "real ish asosida"], "note_uz": "Pitchda «haqiqiy ishlar asosida» deyish taqiqlangan."}
+  ]
+}

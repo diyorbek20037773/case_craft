@@ -1,0 +1,1088 @@
+/*
+ * RoleSlides — rol tushuntiruvchi slaydlar.
+ * Uslub: shaffof navy shisha, ingichka oltin chiziqlar, serif sarlavhalar.
+ * intro.css tokenlaridan foydalanadi (bo‘lmasa — zaxira qiymatlar).
+ */
+
+.rs-overlay {
+  --rs-gold: var(--color-gold, #c9a45c);
+  --rs-gold-soft: var(--color-gold-soft, #e2c88f);
+  --rs-ivory: var(--color-ivory, #f1ead9);
+  --rs-navy: var(--color-navy-900, #0c1629);
+  --rs-navy-deep: var(--color-navy-950, #08111f);
+  --rs-line: rgb(226 200 143 / 0.16);
+  --rs-line-strong: rgb(226 200 143 / 0.34);
+  --rs-display: var(--font-display, 'Cormorant Garamond', Georgia, 'Times New Roman', serif);
+  --rs-sans: var(--font-sans, 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif);
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(4 9 18 / 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--rs-ivory);
+  font-family: var(--rs-sans);
+  animation: rs-fade 220ms ease both;
+}
+
+.rs-overlay *,
+.rs-overlay *::before,
+.rs-overlay *::after {
+  box-sizing: border-box;
+}
+
+.rs-dialog {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(1120px, 100%);
+  height: min(720px, calc(100dvh - 48px));
+  overflow: hidden;
+  border: 1px solid var(--rs-line-strong);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgb(226 200 143 / 0.05), transparent 30%),
+    rgb(15 27 51 / 0.66);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.1),
+    0 40px 90px -30px rgb(0 0 0 / 0.75),
+    0 2px 10px -2px rgb(0 0 0 / 0.35);
+  outline: none;
+  animation: rs-pop 280ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* yuqoridagi oltin chiziq */
+.rs-dialog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(226 200 143 / 0.7), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---------- Sarlavha qatori ---------- */
+.rs-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px 14px 20px;
+  border-bottom: 1px solid var(--rs-line);
+}
+
+.rs-avatar {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid var(--rs-line-strong);
+  filter: saturate(0.85) sepia(0.12);
+}
+
+.rs-head-text {
+  min-width: 0;
+}
+
+.rs-role {
+  margin: 0;
+  font-family: var(--rs-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--rs-ivory);
+}
+
+.rs-status {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.3;
+  color: rgb(241 234 217 / 0.72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rs-badge {
+  flex: none;
+  margin-left: auto;
+  padding: 5px 12px;
+  border: 1px solid var(--rs-line-strong);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--rs-gold-soft);
+  white-space: nowrap;
+}
+
+.rs-badge--you {
+  border-color: rgb(255 235 190 / 0.55);
+  background: linear-gradient(180deg, #d8b770 0%, var(--rs-gold) 60%, #b48d48 100%);
+  color: var(--rs-navy-deep);
+}
+
+.rs-ai-label {
+  flex: none;
+  padding: 5px 12px;
+  border: 1px solid rgb(241 234 217 / 0.22);
+  border-radius: 999px;
+  font-size: 12.5px;
+  line-height: 1.2;
+  color: rgb(241 234 217 / 0.78);
+  white-space: nowrap;
+}
+
+/* ---------- Tugmalar ---------- */
+.rs-icon-btn,
+.rs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.rs-icon-btn svg,
+.rs-btn svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rs-icon-btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--rs-ivory);
+}
+
+.rs-icon-btn:hover {
+  border-color: var(--rs-line-strong);
+  background: rgb(226 200 143 / 0.08);
+}
+
+.rs-btn {
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.rs-btn--primary {
+  border: 1px solid rgb(255 235 190 / 0.5);
+  background: linear-gradient(180deg, #d8b770 0%, var(--rs-gold) 55%, #b48d48 100%);
+  color: var(--rs-navy-deep);
+  box-shadow: 0 8px 24px -10px rgb(201 164 92 / 0.6);
+}
+
+.rs-btn--primary:hover {
+  background: linear-gradient(180deg, #e4c784 0%, #d3b06a 55%, #bd9752 100%);
+}
+
+.rs-btn--ghost {
+  border: 1px solid var(--rs-line-strong);
+  background: rgb(12 22 41 / 0.35);
+  color: var(--rs-ivory);
+}
+
+.rs-btn--ghost:hover:not(:disabled) {
+  border-color: rgb(226 200 143 / 0.55);
+  background: rgb(226 200 143 / 0.08);
+}
+
+.rs-btn:active:not(:disabled),
+.rs-icon-btn:active {
+  transform: translateY(1px);
+}
+
+.rs-btn:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.rs-overlay :focus-visible {
+  outline: 2px solid var(--rs-gold-soft);
+  outline-offset: 3px;
+}
+
+/* ---------- Slayd ---------- */
+.rs-stage {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.rs-slide {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  height: 100%;
+}
+
+/* chiqib ketayotgan slayd — yangisining ostida so‘nadi (crossfade) */
+.rs-slide.rs-leave {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rs-enter-none {
+  animation: rs-fade 220ms ease both;
+}
+.rs-enter-next {
+  animation: rs-in-next 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.rs-enter-prev {
+  animation: rs-in-prev 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.rs-leave-next {
+  animation: rs-out-next 220ms cubic-bezier(0.4, 0, 0.6, 1) both;
+}
+.rs-leave-prev {
+  animation: rs-out-prev 220ms cubic-bezier(0.4, 0, 0.6, 1) both;
+}
+.rs-leave-none {
+  animation: rs-fade-out 220ms ease both;
+}
+
+.rs-visual {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--rs-line);
+  background: radial-gradient(120% 90% at 50% 30%, rgb(28 47 84 / 0.55), rgb(8 17 31 / 0.4) 70%);
+}
+
+/* portret: yorug‘ kunduzgi suratni navy fonga moslash — iliq tus + pastga quyuq o‘tish */
+.rs-portrait {
+  position: absolute;
+  inset: -8px; /* parallaks (±6px) chetni ochib qo‘ymasin */
+  margin: 0;
+  transform: translate3d(var(--rs-px, 0px), var(--rs-py, 0px), 0);
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.rs-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: saturate(0.84) sepia(0.16) contrast(1.06) brightness(0.88);
+  transform-origin: 50% 28%;
+  animation: rs-kenburns 8s cubic-bezier(0.3, 0.1, 0.3, 1) both;
+}
+
+/* siluet portret izohi: "to‘qima shaxs" */
+.rs-portrait-caption {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  padding: 4px 11px;
+  border: 1px solid rgb(226 200 143 / 0.55);
+  border-radius: 999px;
+  background: rgb(8 17 31 / 0.6);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rs-gold-soft);
+}
+
+.rs-portrait-grade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(12 22 41 / 0.25) 0%, rgb(12 22 41 / 0) 22%, rgb(12 22 41 / 0) 52%, rgb(12 22 41 / 0.78) 82%, rgb(12 22 41 / 0.97) 100%),
+    linear-gradient(90deg, rgb(12 22 41 / 0) 72%, rgb(12 22 41 / 0.55) 100%);
+}
+
+.rs-portrait-grade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 70% at 50% 25%, rgb(226 180 110 / 0.22), rgb(28 47 84 / 0.35));
+  mix-blend-mode: soft-light;
+}
+
+.rs-visual--icon {
+  display: grid;
+  place-items: center;
+}
+
+.rs-visual-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  opacity: 0.13;
+  filter: grayscale(0.4) sepia(0.3) blur(2px);
+  transform: translate3d(calc(var(--rs-px, 0px) * -0.7), calc(var(--rs-py, 0px) * -0.7), 0) scale(1.06);
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- AI pasport ('sim' slaydi) ---------- */
+.rs-passport {
+  position: relative;
+  z-index: 1;
+  width: min(410px, 88%);
+  padding: 16px 20px 20px;
+  border: 1px solid rgb(226 200 143 / 0.42);
+  border-radius: 14px;
+  background:
+    repeating-linear-gradient(135deg, rgb(226 200 143 / 0.028) 0 1px, transparent 1px 7px),
+    linear-gradient(160deg, rgb(28 47 84 / 0.94), rgb(10 19 36 / 0.96));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 0 0 5px rgb(226 200 143 / 0.04),
+    0 30px 60px -30px rgb(0 0 0 / 0.8),
+    0 0 90px -12px rgb(201 164 92 / 0.2);
+  animation: rs-pop 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.rs-passport::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(240 210 150 / 0.8), transparent);
+}
+
+.rs-passport-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rs-line);
+}
+
+.rs-passport-star {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: rgb(201 164 92 / 0.18);
+  stroke: var(--rs-gold);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+}
+
+.rs-passport-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rs-gold-soft);
+}
+
+.rs-passport-engine {
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid rgb(241 234 217 / 0.3);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: rgb(241 234 217 / 0.86);
+}
+
+.rs-passport-engine.is-llm {
+  border-color: rgb(159 195 255 / 0.55);
+  background: rgb(159 195 255 / 0.08);
+  color: #d4e3ff;
+}
+
+.rs-passport-body {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.rs-passport-photo {
+  margin: 0;
+}
+
+.rs-passport-photo img {
+  display: block;
+  width: 84px;
+  height: 112px;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid var(--rs-line-strong);
+  border-radius: 8px;
+  filter: saturate(0.85) sepia(0.12);
+}
+
+.rs-passport-photo figcaption {
+  display: grid;
+  gap: 2px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.rs-passport-name {
+  font-family: var(--rs-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--rs-ivory);
+}
+
+.rs-passport-note {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(226 200 143 / 0.85);
+}
+
+.rs-passport-rows {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+}
+
+.rs-passport-row {
+  animation: rs-row-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.rs-passport-row dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rs-gold);
+}
+
+.rs-passport-row dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  line-height: 1.38;
+  color: rgb(241 234 217 / 0.93);
+  text-wrap: pretty;
+}
+
+.rs-visual--icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 50% at 50% 50%, transparent, rgb(12 22 41 / 0.75));
+  pointer-events: none;
+}
+
+.rs-medallion {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: clamp(150px, 17vw, 236px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(226 200 143 / 0.5);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, rgb(201 164 92 / 0.2), rgb(12 22 41 / 0.7) 72%);
+  box-shadow:
+    0 0 0 8px rgb(226 200 143 / 0.04),
+    0 0 0 9px rgb(226 200 143 / 0.22),
+    0 0 90px 10px rgb(201 164 92 / 0.16);
+  color: var(--rs-gold-soft);
+}
+
+.rs-medallion-icon {
+  width: 46%;
+  height: 46%;
+}
+
+.rs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0;
+  padding: clamp(28px, 4vw, 60px);
+  overflow-y: auto;
+}
+
+.rs-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rs-gold);
+}
+
+.rs-kicker-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.rs-title {
+  margin: 12px 0 0;
+  max-width: 22ch;
+  font-family: var(--rs-display);
+  font-size: clamp(32px, 3.3vw, 48px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  color: var(--rs-ivory);
+  text-wrap: balance;
+}
+
+.rs-lead {
+  margin: 18px 0 0;
+  max-width: 40ch;
+  font-size: clamp(19px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: rgb(241 234 217 / 0.92);
+  text-wrap: pretty;
+}
+
+.rs-list {
+  display: grid;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 44ch;
+}
+
+.rs-list li {
+  position: relative;
+  padding-left: 34px;
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.45;
+  color: rgb(241 234 217 / 0.92);
+  text-wrap: pretty;
+}
+
+.rs-list li::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0.5em;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--rs-gold);
+  background: rgb(201 164 92 / 0.25);
+  transform: rotate(45deg);
+}
+
+.rs-source {
+  margin-top: 26px;
+  padding: 6px 16px;
+  border: 1px solid rgb(226 200 143 / 0.55);
+  border-radius: 999px;
+  font-family: var(--rs-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--rs-gold-soft);
+}
+
+.rs-cta {
+  margin-top: 30px;
+  min-height: 54px;
+  padding: 0 24px;
+  font-size: 17px;
+}
+
+/* ---------- Pastki navigatsiya ---------- */
+.rs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--rs-line);
+}
+
+.rs-next,
+.rs-prev {
+  min-width: 132px;
+}
+
+.rs-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.rs-dots {
+  display: flex;
+  align-items: center;
+}
+
+.rs-dot {
+  position: relative;
+  width: 38px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* indikator: 2px oltin chiziq */
+.rs-dot::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(226 200 143 / 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.rs-dot:hover::before {
+  background: rgb(226 200 143 / 0.6);
+}
+
+.rs-dot.is-active::before {
+  width: 32px;
+  background: var(--rs-gold-soft);
+  box-shadow: 0 0 10px rgb(226 200 143 / 0.55);
+}
+
+.rs-count {
+  min-width: 3.2em;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgb(241 234 217 / 0.78);
+  text-align: right;
+}
+
+.rs-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Animatsiyalar ---------- */
+@keyframes rs-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rs-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rs-in-next {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rs-in-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rs-out-next {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes rs-out-prev {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
+@keyframes rs-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rs-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes rs-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-overlay,
+  .rs-dialog,
+  .rs-enter-none,
+  .rs-enter-next,
+  .rs-enter-prev {
+    animation: rs-fade 200ms ease both;
+  }
+  .rs-leave-none,
+  .rs-leave-next,
+  .rs-leave-prev {
+    animation: rs-fade-out 200ms ease both;
+  }
+  .rs-passport,
+  .rs-passport-row,
+  .rs-portrait img {
+    animation: none;
+  }
+  .rs-portrait,
+  .rs-visual-bg {
+    transition: none;
+    transform: none;
+  }
+  .rs-dot::before,
+  .rs-btn,
+  .rs-icon-btn {
+    transition: none;
+  }
+}
+
+/* blur o‘chgan rejim (intro quality==='low' -> .rs-overlay.is-low; portal body'da, shuning uchun .q-low emas) */
+.rs-overlay.is-low,
+.rs-overlay.is-low .rs-dialog {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.rs-overlay.is-low .rs-dialog {
+  background: var(--solid-bg-strong, rgb(11 20 38 / 0.97));
+}
+.rs-overlay.is-low .rs-portrait img,
+.rs-overlay.is-low .rs-passport-row {
+  animation: none;
+}
+.rs-overlay.is-low .rs-portrait,
+.rs-overlay.is-low .rs-visual-bg {
+  transition: none;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rs-overlay {
+    background: rgb(4 9 18 / 0.8);
+  }
+  .rs-dialog {
+    background: rgb(11 20 38 / 0.97);
+  }
+}
+
+/* ---------- O‘rta ekran ---------- */
+@media (max-width: 1000px) {
+  .rs-ai-label {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 721px) {
+  .rs-passport-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rs-passport-photo {
+    display: none;
+  }
+}
+
+/* past ekran (masalan 1280x720 dan pastroq): pasport qatorlari ixchamroq */
+@media (max-height: 700px) and (min-width: 721px) {
+  .rs-passport {
+    padding: 12px 16px 14px;
+  }
+  .rs-passport-rows {
+    gap: 7px;
+  }
+  .rs-passport-row dd {
+    font-size: 14px;
+  }
+}
+
+/* ---------- Telefon: to‘liq ekranli varaq ---------- */
+@media (max-width: 720px) {
+  .rs-overlay {
+    padding: 0;
+    place-items: stretch;
+  }
+
+  .rs-dialog {
+    width: 100%;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    background:
+      linear-gradient(180deg, rgb(226 200 143 / 0.05), transparent 30%),
+      rgb(12 22 41 / 0.9);
+    animation-name: rs-sheet;
+  }
+
+  .rs-head {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    gap: 10px;
+    padding: 10px 8px 10px 14px;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+
+  .rs-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rs-role {
+    font-size: 24px;
+  }
+
+  .rs-status {
+    font-size: 13px;
+  }
+
+  .rs-badge {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .rs-ai-label {
+    display: block;
+    order: 10;
+    flex-basis: 100%;
+    padding: 0 0 0 50px;
+    border: 0;
+    font-size: 12px;
+    color: rgb(241 234 217 / 0.6);
+  }
+
+  .rs-slide {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .rs-visual {
+    border-right: 0;
+  }
+
+  .rs-visual--portrait {
+    height: min(42dvh, 360px);
+    min-height: 220px;
+  }
+
+  .rs-visual--icon {
+    padding: 28px 0 6px;
+    background: none;
+  }
+
+  .rs-visual--icon::after,
+  .rs-visual-bg {
+    display: none;
+  }
+
+  .rs-visual--passport {
+    padding: 18px 22px 0;
+  }
+
+  .rs-passport {
+    width: 100%;
+    padding: 14px 16px 16px;
+  }
+
+  .rs-passport-body {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .rs-passport-photo img {
+    width: 64px;
+    height: 85px;
+  }
+
+  .rs-passport-name {
+    font-size: 16px;
+  }
+
+  .rs-passport-row dd {
+    font-size: 15px;
+  }
+
+  .rs-portrait-caption {
+    top: 14px;
+    right: 14px;
+  }
+
+  .rs-medallion {
+    width: 118px;
+    box-shadow:
+      0 0 0 8px rgb(226 200 143 / 0.05),
+      0 0 0 9px rgb(226 200 143 / 0.2),
+      0 0 50px 6px rgb(201 164 92 / 0.16);
+  }
+
+  .rs-text {
+    justify-content: flex-start;
+    padding: 20px 22px 28px;
+    overflow: visible;
+  }
+
+  .rs-slide--who .rs-text {
+    margin-top: -48px;
+    position: relative;
+  }
+
+  .rs-title {
+    font-size: 32px;
+    max-width: none;
+  }
+
+  .rs-lead,
+  .rs-list li {
+    font-size: 18px;
+  }
+
+  .rs-cta {
+    align-self: stretch;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .rs-nav {
+    padding: 10px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .rs-next,
+  .rs-prev {
+    min-width: 52px;
+    padding: 0 14px;
+  }
+
+  .rs-btn-text:not(.rs-btn-text--always) {
+    display: none;
+  }
+
+  .rs-progress {
+    gap: 8px;
+  }
+
+  .rs-dot {
+    width: 28px;
+    height: 44px;
+  }
+
+  .rs-dot::before {
+    width: 14px;
+  }
+
+  .rs-dot.is-active::before {
+    width: 22px;
+  }
+}
+
+@keyframes rs-sheet {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  .rs-dialog {
+    animation: rs-fade 200ms ease both;
+  }
+}

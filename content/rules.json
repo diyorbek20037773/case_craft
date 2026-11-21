@@ -1,0 +1,405 @@
+{
+  "stages": [
+    {
+      "id": "ochilish",
+      "order": 1,
+      "name_uz": "Sud majlisini ochish va tayyorlov qismi",
+      "goal_uz": "Raislik qiluvchi majlisni ochadi, ishtirokchilarning kelganini tekshiradi, sudlanuvchining huquqlarini tushuntiradi va iltimoslarni so'raydi. Himoyachi o'zini tanishtiradi, guvohni so'roq qilishga o'tishga rozilik bildiradi.",
+      "allowed_speakers": ["raislik_qiluvchi", "kotib", "prokuror", "himoyachi"],
+      "judge_hint_uz": "Majlisni «Sud majlisi ochiq deb e'lon qilinadi» deb oching. Ish nomini, ishtirokchilarni ayting. Himoyachidan iltimosi bor-yo'qligini so'rang. Iltimos bo'lmasa sud tergoviga o'ting. Bosqichda faqat protsessual masalalar muhokama qilinadi, ish mohiyati bo'yicha gap bo'lsa to'xtating.",
+      "next_on_uz": "Himoyachi va prokuror iltimoslari hal qilingach (yoki iltimos yo'qligi aytilgach) raislik qiluvchi sud tergovini e'lon qiladi: bosqich «guvoh_soroq» ga o'tadi.",
+      "tutor_uz": "Majlisni raislik qiluvchi ochadi, kotib kelganlarni qayd etadi, sudlanuvchiga huquqlari tushuntiriladi va iltimoslar so'raladi (JPK 428, 429, 435, 438-moddalar). Gapirishdan oldin o'rnidan turing va «Hurmatli sud» deb murojaat qiling (JPK 424-modda).",
+      "tutor_choices": [
+        {"id": "a", "label_uz": "Iltimosim yo'q", "text_uz": "Hurmatli sud, iltimosim yo'q. Guvohni so'roq qilishga o'tishga qarshi emasman."},
+        {"id": "b", "label_uz": "So'z so'rash", "text_uz": "Raislik qiluvchi, so'z berishingizni so'rayman."}
+      ],
+      "hints_uz": [
+        "Avval raislik qiluvchidan so'z so'rang, keyin o'rnidan turib gapiring.",
+        "Iltimosingiz bormi yoki yo'qmi, shuni aniq ayting.",
+        "Sudga «Hurmatli sud» deb murojaat qiling."
+      ]
+    },
+    {
+      "id": "guvoh_soroq",
+      "order": 2,
+      "name_uz": "Sud tergovi: guvohni so'roq qilish",
+      "goal_uz": "Guvoh javobgarlik haqida ogohlantiriladi, so'ngra taraflar uni so'roq qiladi. Himoyachi ochiq, yo'naltirmaydigan savollar bilan guvohning ko'rsatuvini aniqlashtiradi va ishonchliligini tekshiradi.",
+      "allowed_speakers": ["raislik_qiluvchi", "prokuror", "himoyachi", "guvoh"],
+      "judge_hint_uz": "Guvohning shaxsini aniqlang, javobgarlik haqida ogohlantiring. Avval guvohni taklif qilgan taraf (prokuror), keyin himoyachi so'roq qiladi. Yo'naltiruvchi savolni o'zingiz rad eting, savolni qayta shakllantirishni talab qiling. Guvohga bosim yoki haqorat, ishga aloqasi yo'q savol va muzokara nutqini to'xtating. Himoyachining savollari tugagach yoki yangi savol bo'lmasa, sud tergovini tugatish haqida so'rang.",
+      "next_on_uz": "Himoyachi «savollarim tugadi» desa yoki savollar soni/vaqt limiti tugasa, raislik qiluvchi sud tergovini tugallangan deb e'lon qiladi: bosqich «muzokara» ga o'tadi.",
+      "tutor_uz": "Guvoh qasamyod qiladi va javobgarlikdan ogohlantiriladi, guvohni avval uni taklif qilgan taraf, so'ng boshqalar so'roq qiladi (JPK 441, 442-moddalar). Savol javobni o'zida ko'rsatmasligi kerak: ishora qiluvchi savol taqiqlangan (JPK 102-modda), ishga aloqasizni raislik qiluvchi chetlashtiradi (JPK 408-modda).",
+      "tutor_choices": [
+        {"id": "a", "label_uz": "Ochiq savol", "text_uz": "Guvoh, voqea paytida ko'rishingizga biror narsa ta'sir qilganmi?"},
+        {"id": "b", "label_uz": "Raislik qiluvchiga murojaat", "text_uz": "Raislik qiluvchi, prokurorning savoli ishora qiluvchi, uni rad etishni so'rayman (JPK 102-modda)."},
+        {"id": "c", "label_uz": "Dalilga tayanib savol", "text_uz": "Guvoh, kassa peshtaxtasidan javongacha masofa qancha edi va u yerdan nimani aniq ko'rdingiz?"}
+      ],
+      "hints_uz": [
+        "Guvohning ko'rish sharoitini so'rab ko'ring.",
+        "Prokurorning savolida javob tayyor bo'lsa, raislik qiluvchiga murojaat qiling.",
+        "Savolingiz «ha/yo'q» javob talab qilmasin: guvoh o'z so'zi bilan aytsin."
+      ]
+    },
+    {
+      "id": "muzokara",
+      "order": 3,
+      "name_uz": "Taraflar muzokarasi: himoyachi nutqi",
+      "goal_uz": "Davlat ayblovchisi, so'ngra himoyachi sud tergovida tekshirilgan dalillarga tayanib o'z pozitsiyasini bayon qiladi. Himoyachi nutqida guvoh ko'rsatuvining ishonchliligi va shubhalarni sudlanuvchi foydasiga hal qilish haqida gapiradi.",
+      "allowed_speakers": ["raislik_qiluvchi", "prokuror", "himoyachi"],
+      "judge_hint_uz": "Nutq faqat sud tergovida tekshirilgan dalillarga tayanishi kerak. Yangi, tekshirilmagan faktlar haqida gapirsa yoki guvohga savol bera boshlasa, ogohlantiring. Nutqning davomiyligini cheklamang: faqat ishga aloqasi yo'q gapni to'xtating. Nutq tugagach sudlanuvchiga oxirgi so'z beriladi.",
+      "next_on_uz": "Himoyachi nutqini tugatgach (yoki vaqt tugasa) raislik qiluvchi sudlanuvchiga oxirgi so'z beradi: bosqich «oxirgi_soz» ga o'tadi (ixtiyoriy bo'lsa, mashq yakunlanadi).",
+      "tutor_uz": "Sud tergovi tugagach avval ayblov, keyin himoyachi so'zlaydi; nutq faqat sud tergovida tekshirilgan dalillarga tayanadi (JPK 448, 449-moddalar). Maqsad: dalillar yetarli emasligini va shubhalar sudlanuvchi foydasiga hal etilishini asoslash (JPK 23-modda).",
+      "tutor_choices": [
+        {"id": "a", "label_uz": "Dalillarga tayanish", "text_uz": "Hurmatli sud, ayblov dalillari sudlanuvchining aybini isbotlamaydi: guvoh ko'rsatuvi ishonchli emas, video yuzni ko'rsatmaydi, noutbuk topilmagan. Shubhalar sudlanuvchi foydasiga hal qilinadi, oqlashni so'rayman."},
+        {"id": "b", "label_uz": "Guvohga savol (xato yo'l)", "text_uz": "Guvoh, siz o'sha kuni nimani ko'rdingiz?"},
+        {"id": "c", "label_uz": "Nutqni yakunlash", "text_uz": "Nutqim tugadi."}
+      ],
+      "hints_uz": [
+        "Faqat sud majlisida tekshirilgan dalillarga tayaning.",
+        "Guvohning ko'rsatuvi qanchalik ishonchli ekanini baholang.",
+        "Isbotlanmagan shubhalar kimning foydasiga hal qilinishini eslang."
+      ]
+    },
+    {
+      "id": "oxirgi_soz",
+      "order": 4,
+      "name_uz": "Sudlanuvchining oxirgi so'zi (ixtiyoriy)",
+      "goal_uz": "Sudlanuvchi muzokaradan keyin oxirgi so'zni aytadi. Mashqda bu bosqich qisqa, AI sudlanuvchi nomidan bitta qisqa gap aytishi yoki o'tkazib yuborilishi mumkin.",
+      "allowed_speakers": ["raislik_qiluvchi", "sudlanuvchi"],
+      "judge_hint_uz": "Sudlanuvchiga oxirgi so'z beriladi. Oxirgi so'z paytida unga savol berilmaydi va uni to'xtatilmaydi (ish bilan bog'liq bo'lmagan gaplar bundan mustasno). Mashq shu bilan tugaydi: hukm chiqarilmaydi.",
+      "next_on_uz": "Sudlanuvchi gapirib bo'lgach, raislik qiluvchi o'quv mashqini yakunlangan deb e'lon qiladi. Hukm AI tomonidan chiqarilmaydi, baho va bayonnoma o'qituvchi ko'rib chiqishiga yuboriladi.",
+      "tutor_uz": "Muzokaradan keyin sudlanuvchi oxirgi so'zni aytadi; unga savol berilmaydi, raislik qiluvchi uni faqat ishga aloqasiz gap bo'lsa to'xtatadi (JPK 451-modda). Mashq shu yerda tugaydi, hukm chiqarilmaydi.",
+      "tutor_choices": [
+        {"id": "a", "label_uz": "Oxirgi so'zni tinglash", "text_uz": "Raislik qiluvchi, sudlanuvchiga oxirgi so'z berishingizni so'rayman."},
+        {"id": "b", "label_uz": "Mashqni yakunlash", "text_uz": "Hurmatli sud, boshqa iltimosim yo'q."}
+      ],
+      "hints_uz": [
+        "Oxirgi so'z sudlanuvchiga tegishli: unga savol bermang.",
+        "Raislik qiluvchining ko'rsatmasini kuting.",
+        "Majlis bayonnomasi kotib tomonidan yuritiladi (JPK 426-modda)."
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "id": "jpk-22",
+      "ref": "JPK 22-modda",
+      "title_uz": "Haqiqatni aniqlash",
+      "text_uz": "Sud, prokuror, tergovchi va surishtiruvchi ish holatlarini har tomonlama, to'liq va xolisona tekshirishi shart. (Mazmuni, so'zma-so'z emas.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-23",
+      "ref": "JPK 23-modda",
+      "title_uz": "Aybsizlik prezumpsiyasi",
+      "text_uz": "Shaxs aybi qonunda belgilangan tartibda isbotlanmaguncha aybsiz hisoblanadi. Isbotlanmagan shubhalar sudlanuvchi foydasiga hal qilinadi. (Mazmuni, so'zma-so'z emas.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-24",
+      "ref": "JPK 24-modda",
+      "title_uz": "Gumon qilinuvchi, ayblanuvchi va sudlanuvchini himoyalanish huquqi bilan ta'minlash",
+      "text_uz": "Sudlanuvchiga o'zini himoya qilish huquqi ta'minlanadi, bu huquq himoyachi ishtiroki orqali ham amalga oshadi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara", "oxirgi_soz"]
+    },
+    {
+      "id": "jpk-25",
+      "ref": "JPK 25-modda",
+      "title_uz": "Sudda ishlarni yuritishda tortishuv",
+      "text_uz": "Sudda ish ayblov, himoya va hal qiluvchi (sud) vazifalari ajratilgan holda, taraflar tortishuvi asosida yuritiladi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-26",
+      "ref": "JPK 26-modda",
+      "title_uz": "Dalillarni bevosita va og'zaki usulda tekshirish",
+      "text_uz": "Sud dalillarni sud majlisida bevosita va og'zaki tekshiradi; guvohlar sud majlisida so'roq qilinadi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-32",
+      "ref": "JPK 32-modda",
+      "title_uz": "Sud majlisi kotibi",
+      "text_uz": "Sud majlisi kotibi majlisning borishini qayd etadi va bayonnomani yuritadi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish"]
+    },
+    {
+      "id": "jpk-49",
+      "ref": "JPK 49-modda",
+      "title_uz": "Himoyachi",
+      "text_uz": "Himoyachi sudlanuvchining huquq va qonuniy manfaatlarini himoya qiladi, ish yuzasidan iltimos qilish, dalillarni taqdim etish va sud majlisida ishtirok etish huquqiga ega. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-102",
+      "ref": "JPK 102-modda",
+      "title_uz": "Ishora qiluvchi savollar berishga yo'l qo'yilmasligi",
+      "text_uz": "Javobni to'g'ridan-to'g'ri yoki bilvosita ko'rsatadigan savol ishora qiluvchi hisoblanadi, bunday savol berish taqiqlanadi. Sud tergovida qo'llanishi JPK 442-modda orqali. (Mazmuni; rus tahriri bo'yicha tekshirilgan, o'zbekcha matn lex.uz da tasdiqlanishi kerak.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-114",
+      "ref": "JPK 114-modda",
+      "title_uz": "Guvoh va jabrlanuvchini so'roq qilish tartibi",
+      "text_uz": "Guvoh avval o'ziga ma'lum bo'lgan ish holatlari haqida erkin gapirib beradi, keyin unga savollar beriladi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-117",
+      "ref": "JPK 117-modda",
+      "title_uz": "Guvoh va jabrlanuvchining protsessual majburiyatlarni buzganlik uchun javobgarlik to'g'risida ogohlantirish",
+      "text_uz": "Guvoh to'g'ri ko'rsatuv berish majburiyati va yolg'on ko'rsatuv uchun javobgarlik haqida ogohlantiriladi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-408",
+      "ref": "JPK 408-modda",
+      "title_uz": "Sud majlisida raislik qiluvchi",
+      "text_uz": "Raislik qiluvchi majlisni boshqaradi, ish holatlarini har tomonlama, to'liq va xolisona tekshirishni ta'minlaydi, ishga aloqasi yo'q narsalarni chetlashtiradi, tartibni ta'minlaydi (uning ko'rsatmalari majburiy). Uning harakatlariga e'tiroz bo'lsa, e'tirozlar majlis bayonnomasiga kiritiladi (4-qism). (Mazmuni; rus tahriri bo'yicha tekshirildi, o'zbekcha matn lex.uz da tasdiqlanishi kerak.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara", "oxirgi_soz"]
+    },
+    {
+      "id": "jpk-409",
+      "ref": "JPK 409-modda",
+      "title_uz": "Sud muhokamasida prokurorning ishtiroki",
+      "text_uz": "Prokuror davlat ayblovchisi sifatida sud muhokamasida ishtirok etadi, ayblovni qo'llab-quvvatlaydi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-424",
+      "ref": "JPK 424-modda",
+      "title_uz": "Sud majlisining tartibi",
+      "text_uz": "Sudyalar kirganda zaldagilar o'rnidan turadi. Ishtirokchilar sudga murojaat qiladi, ko'rsatuv beradi va arizalarni o'rnidan turib bildiradi (raislik qiluvchi ruxsat bersa, istisno). Ular raislik qiluvchining ko'rsatmalariga bo'ysunadi. (Mazmuni; rus tahriri bo'yicha tekshirildi, o'zbekcha matn lex.uz da tasdiqlanishi kerak.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara", "oxirgi_soz"]
+    },
+    {
+      "id": "jpk-425",
+      "ref": "JPK 425-modda",
+      "title_uz": "Sud majlisida tartibni buzuvchilarga nisbatan qo'llaniladigan choralar",
+      "text_uz": "Tartibni buzuvchiga ogohlantirish beriladi, takroran buzilsa sud qonunda nazarda tutilgan choralarni qo'llaydi. (Mazmuni, choralar ro'yxati tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-426",
+      "ref": "JPK 426-modda",
+      "title_uz": "Sud majlisining bayonnomasi",
+      "text_uz": "Bayonnomani sud majlisi kotibi yuritadi. Unda sud qarorlari, arizalar, guvoh ko'rsatuvlarining mazmuni, muzokara va sudlanuvchining oxirgi so'zi qayd etiladi. Raislik qiluvchi va kotib imzolaydi. (Mazmuni; rus tahriri bo'yicha tekshirildi, o'zbekcha matn lex.uz da tasdiqlanishi kerak.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq", "muzokara", "oxirgi_soz"]
+    },
+    {
+      "id": "jpk-427",
+      "ref": "JPK 427-modda",
+      "title_uz": "Sud majlisining bayonnomasi yuzasidan mulohazalar berish va ularni ko'rib chiqish tartibi",
+      "text_uz": "Bayonnoma imzolangandan keyin 5 sutka ichida unga mulohaza berish mumkin; mulohazani raislik qiluvchi tasdiqlaydi yoki sud tarkibi hal qiladi. Bu majlisdan keyingi mexanizm. (Mazmuni; rus tahriri bo'yicha tekshirildi, o'zbekcha matn lex.uz da tasdiqlanishi kerak.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["oxirgi_soz"]
+    },
+    {
+      "id": "jpk-428",
+      "ref": "JPK 428-modda",
+      "title_uz": "Sud majlisini ochish",
+      "text_uz": "Raislik qiluvchi belgilangan vaqtda majlisni ochadi va qaysi ish ko'rilishini e'lon qiladi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish"]
+    },
+    {
+      "id": "jpk-429",
+      "ref": "JPK 429-modda",
+      "title_uz": "Protsess ishtirokchilarining sudga kelgan-kelmaganligini tekshirish",
+      "text_uz": "Kotib ishtirokchilar, guvohlar va boshqa chaqirilgan shaxslarning kelgan-kelmaganligi haqida raislik qiluvchiga ma'lum qiladi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish"]
+    },
+    {
+      "id": "jpk-432",
+      "ref": "JPK 432-modda",
+      "title_uz": "Guvohlarni sud majlisi zalidan chiqarib turish",
+      "text_uz": "Guvohlar sud tergovi boshlanguncha zaldan chiqarib turiladi va o'z navbatida chaqiriladi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq"]
+    },
+    {
+      "id": "jpk-435",
+      "ref": "JPK 435-modda",
+      "title_uz": "Sudlanuvchiga uning huquqlarini tushuntirish",
+      "text_uz": "Raislik qiluvchi sudlanuvchiga uning protsessual huquqlarini tushuntiradi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish"]
+    },
+    {
+      "id": "jpk-438",
+      "ref": "JPK 438-modda",
+      "title_uz": "Iltimoslar qilish va ularni hal etish",
+      "text_uz": "Taraflar iltimos qilishi mumkin, sud ularni hal qiladi. (Mazmuni.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq"]
+    },
+    {
+      "id": "jpk-439",
+      "ref": "JPK 439-modda",
+      "title_uz": "Sud tergovining boshlanishi",
+      "text_uz": "Sud tergovi ayblov xulosasi (qarori) e'lon qilinishi va sudlanuvchining munosabati so'ralishi bilan boshlanadi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["ochilish", "guvoh_soroq"]
+    },
+    {
+      "id": "jpk-440",
+      "ref": "JPK 440-modda",
+      "title_uz": "Dalillarni tekshirish navbatini belgilash",
+      "text_uz": "Dalillarni tekshirish navbatini sud taraflar fikrini eshitib belgilaydi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-441",
+      "ref": "JPK 441-modda",
+      "title_uz": "Guvohning qasamyodi va uni javobgarlik to'g'risida ogohlantirish",
+      "text_uz": "Guvoh so'roq qilinishidan oldin qasamyod qiladi va yolg'on ko'rsatuv uchun javobgarlik haqida ogohlantiriladi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-442",
+      "ref": "JPK 442-modda",
+      "title_uz": "Sudda so'roq qilish tartibi",
+      "text_uz": "Sudda so'roq JPK 96-108-moddalar talablariga rioya qilingan holda o'tkaziladi; guvohni dastlab uni taklif qilgan taraf, so'ngra boshqa ishtirokchilar so'roq qiladi. (Mazmuni, qidiruv natijasidan olingan, tekshirilmagan: yurist so'zma-so'z tekshirsin.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq"]
+    },
+    {
+      "id": "jpk-448",
+      "ref": "JPK 448-modda",
+      "title_uz": "Sud tergovining tamomlanishi",
+      "text_uz": "Dalillar tekshirilib bo'lgach, raislik qiluvchi taraflardan qo'shimcha iltimos bor-yo'qligini so'raydi va sud tergovini tugallaydi. (Mazmuni, tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["guvoh_soroq", "muzokara"]
+    },
+    {
+      "id": "jpk-449",
+      "ref": "JPK 449-modda",
+      "title_uz": "Taraflar muzokarasining mazmuni va tartibi",
+      "text_uz": "Muzokarada avval ayblov, so'ng himoya tomoni so'zlaydi; nutq sud tergovida tekshirilgan dalillarga asoslanishi kerak. (Mazmuni, tekshirilmagan: tartib va cheklovlar yuristda.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["muzokara"]
+    },
+    {
+      "id": "jpk-451",
+      "ref": "JPK 451-modda",
+      "title_uz": "Sudlanuvchining oxirgi so'zi",
+      "text_uz": "Taraflar muzokarasidan keyin sudlanuvchiga oxirgi so'z beriladi. (Mazmuni; savol berish va to'xtatish taqiqi tekshirilmagan.)",
+      "source_url": "https://lex.uz/uz/docs/-111460",
+      "stage_ids": ["oxirgi_soz"]
+    }
+  ],
+  "violations": [
+    {
+      "id": "yonaltiruvchi_savol",
+      "name_uz": "Yo'naltiruvchi (ishora qiluvchi) savol",
+      "detect_hint_uz": "Savolning o'zida kutilgan javob bor yoki «ha/yo'q», «to'g'rimi?», «shunday emasmi?» bilan tasdiqlatiladi. Faqat «guvoh_soroq» bosqichida guvohga berilgan savollarda. Ochiq savol («nima ko'rdingiz?») qoidabuzarlik emas. Regexlar re.IGNORECASE bilan ishlating, tutuq belgisini normallashtiring.",
+      "regex_uz": [
+        "to['’ʻʼ‘]?g['’ʻʼ‘]?ri(mi|\\s+emasmi)\\s*\\??\\s*$",
+        "shunday\\s+emasmi",
+        "shundaymi\\s*\\??\\s*$",
+        "\\bdemak,?\\s+siz\\b",
+        "\\bsiz\\s+.{0,40}\\s+(edingiz|ekansiz|bo['’ʻʼ‘]?lgansiz)\\s*,?\\s*(to['’ʻʼ‘]?g['’ʻʼ‘]?rimi|shundaymi|ha)\\b",
+        "tasdiqlaysizmi\\s*\\??\\s*$"
+      ],
+      "article_ids": ["jpk-102", "jpk-442", "jpk-408"],
+      "warning_uz": "Savol rad etiladi. Ishora qiluvchi (yo'naltiruvchi) savol berishga yo'l qo'yilmaydi (JPK 102-modda, 442-modda). Himoyachi, savolni ochiq shaklda qayta bering.",
+      "warning_short_uz": "Savol rad etiladi, ishora qiluvchi savol mumkin emas, JPK 102-modda."
+    },
+    {
+      "id": "bosim_haqorat",
+      "name_uz": "Guvohga bosim o'tkazish yoki haqorat",
+      "detect_hint_uz": "Guvohni yolg'onchilikda ayblash, qo'rqitish, haqoratlash, shoshirish, ahmoq/yolg'onchi deyish. Ohang agressiv bo'lsa ham, mazmuni bo'yicha aniqlang.",
+      "regex_uz": [
+        "yolg['’ʻʼ‘]?on\\s+(gapiryapsiz|gapirasiz|aytyapsiz)",
+        "yolg['’ʻʼ‘]?onchi",
+        "aldayapsiz",
+        "ahmoq|tentak|savodsiz|sharmanda",
+        "jim\\s+bo['’ʻʼ‘]?ling",
+        "javob\\s+bering\\s*!",
+        "qo['’ʻʼ‘]?rqmang|qamalasiz|javobgarlikka\\s+tortilasiz"
+      ],
+      "article_ids": ["jpk-408", "jpk-424", "jpk-425"],
+      "warning_uz": "Himoyachiga ogohlantirish beriladi: guvohga bosim o'tkazish va uni haqoratlash mumkin emas, sud majlisi tartibiga rioya qiling (JPK 424-modda, 425-modda, 408-modda). Savolni hurmat bilan bering.",
+      "warning_short_uz": "Himoyachi, guvohga bosim mumkin emas, JPK 424-modda."
+    },
+    {
+      "id": "bosqichdan_tashqari",
+      "name_uz": "Bosqichdan tashqari gapirish (so'roq paytida muzokara nutqi)",
+      "detect_hint_uz": "Guvohni so'roq qilish bosqichida savol o'rniga baho, xulosa yoki oqlash so'rovi aytilsa. Muzokara bosqichida esa guvohga savol bera boshlash ham shu qoidabuzarlik. Regexlar FAQAT «guvoh_soroq» bosqichida qo'llanadi: «muzokara» bosqichida oqlashni so'rash to'g'ri harakat.",
+      "regex_uz": [
+        "xulosa\\s+qilib\\s+aytganda",
+        "hurmatli\\s+sud,?\\s+.{0,60}(oqlashni|aybsiz\\s+deb\\s+topishni)\\s+so['’ʻʼ‘]?rayman",
+        "mening\\s+(muzokara\\s+)?nutqim",
+        "sudlanuvchini\\s+oqlashni\\s+so['’ʻʼ‘]?rayman",
+        "yakunida\\s+shuni\\s+aytmoqchimanki",
+        "muzokaraga\\s+o['’ʻʼ‘]?tsak"
+      ],
+      "article_ids": ["jpk-439", "jpk-449", "jpk-408"],
+      "warning_uz": "Himoyachi, hozir sud tergovida guvohni so'roq qilish bosqichi. Taraflar muzokarasi (JPK 449-modda) sud tergovi tugagach o'tkaziladi (JPK 448-modda). Hozir faqat guvohga savol bering (JPK 408-modda).",
+      "warning_short_uz": "Hozir muzokara vaqti emas, guvohga savol bering, JPK 449-modda."
+    },
+    {
+      "id": "aloqasiz_savol",
+      "name_uz": "Ishga aloqasi yo'q savol",
+      "detect_hint_uz": "Savol ish holatlariga, guvohning ishonchliligiga yoki dalillarga bog'liq emas: shaxsiy hayot, maosh, siyosat, din, oila va sh.k. Guvohning ko'rish imkoniyati, tanishlik, manfaatdorlik haqidagi savollar ishga aloqador.",
+      "regex_uz": [
+        "maoshingiz|oylik\\s+daromadingiz|ish\\s+haqingiz",
+        "turmush\\s+qur(gan|mag)an",
+        "oilangiz|farzandingiz",
+        "qaysi\\s+(partiya|dinga|millatga)",
+        "kim\\s+uchun\\s+ovoz",
+        "sevgilingiz|yigitingiz|qiz\\s+do['’ʻʼ‘]?stingiz",
+        "futbol|siyosat\\s+haqida"
+      ],
+      "article_ids": ["jpk-408", "jpk-22"],
+      "warning_uz": "Savol ishga aloqador emas va rad etiladi (JPK 408-modda: raislik qiluvchi ishga aloqasi yo'q narsalarni chetlashtiradi; JPK 22-modda: tekshiruv ish holatlariga qaratiladi). Himoyachi, ish holatlariga oid savol bering.",
+      "warning_short_uz": "Savol ishga aloqador emas, rad etiladi, JPK 408-modda."
+    },
+    {
+      "id": "ruxsatsiz_gapirish",
+      "name_uz": "Raislik qiluvchining ruxsatisiz gapirish",
+      "detect_hint_uz": "Ishtirokchi so'z berilmagan paytda gapiradi: boshqa ishtirokchining gapini bo'ladi, navbatsiz savol beradi yoki raislik qiluvchining ko'rsatmasiga e'tibor bermaydi. Kod holati (kimning navbati) bilan birga tekshiring.",
+      "regex_uz": [
+        "ruxsat\\s+so['’ʻʼ‘]?ramayman",
+        "gapimni\\s+bo['’ʻʼ‘]?lmang",
+        "(prokuror|sudya|guvoh)\\s+(gapini|so['’ʻʼ‘]?zini)\\s+bo['’ʻʼ‘]?l",
+        "men\\s+hozir\\s+(savol\\s+beraman|gapiraman)",
+        "so['’ʻʼ‘]?z\\s+bermasangiz\\s+ham"
+      ],
+      "article_ids": ["jpk-408", "jpk-424"],
+      "warning_uz": "Himoyachi, so'zni faqat raislik qiluvchining ruxsati bilan oling. Majlisda tartib saqlanadi va raislik qiluvchining ko'rsatmalari bajariladi (JPK 408-modda, 424-modda).",
+      "warning_short_uz": "So'zni faqat ruxsat bilan oling, JPK 408-modda."
+    },
+    {
+      "id": "sudga_hurmatsizlik",
+      "name_uz": "Sudga yoki ishtirokchilarga hurmatsizlik",
+      "detect_hint_uz": "Raislik qiluvchi yoki prokurorga nisbatan qo'pol so'z, istehzo, sud qarorini kamsitish. Raislik qiluvchining harakatiga e'tiroz bildirish (bayonnomaga kiritishni so'rash) esa qoidabuzarlik emas.",
+      "regex_uz": [
+        "sudya\\s+(siz\\s+)?(noto['’ʻʼ‘]?g['’ʻʼ‘]?ri|adolatsiz|xolis\\s+emas)",
+        "bu\\s+sud\\s+(adolatsiz|ko['’ʻʼ‘]?r)",
+        "prokuror\\s+(yolg['’ʻʼ‘]?on|ahmoq)",
+        "sizga\\s+baribir"
+      ],
+      "article_ids": ["jpk-424", "jpk-425", "jpk-408"],
+      "warning_uz": "Himoyachiga ogohlantirish beriladi: sudga va protsess ishtirokchilariga hurmat bilan munosabatda bo'ling (JPK 424-modda, 425-modda). Raislik qiluvchining harakatiga e'tirozingiz bo'lsa, e'tiroz bildiring: u majlis bayonnomasiga kiritiladi, majlis davom etadi (JPK 408-modda 4-qism).",
+      "warning_short_uz": "Sudga hurmat bilan munosabatda bo'ling, JPK 424-modda."
+    }
+  ]
+}

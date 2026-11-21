@@ -1,0 +1,13 @@
+[
+  {"input_uz": "Guvoh, siz sudlanuvchini vitrina yonida ko'rdingiz, shunday emasmi?", "stage_id": "sud_tergovi", "expected_violation_id": "yonaltiruvchi_savol", "expect_reveal": false, "note_uz": "Klassik yo'naltiruvchi savol."},
+  {"input_uz": "U telefonni cho'ntagiga soldi, to'g'rimi?", "stage_id": "sud_tergovi", "expected_violation_id": "yonaltiruvchi_savol", "expect_reveal": false, "note_uz": "Javob savol ichida."},
+  {"input_uz": "Guvoh, o'sha kuni do'konda soat nechagacha ishladingiz?", "stage_id": "sud_tergovi", "expected_violation_id": null, "expect_reveal": false, "note_uz": "Ochiq savol, qoidabuzarlik yo'q."},
+  {"input_uz": "Siz kassadan vitrinagacha bo'lgan masofada yuzni qanchalik aniq ko'ra olasiz?", "stage_id": "sud_tergovi", "expected_violation_id": null, "expect_reveal": true, "note_uz": "To'g'ri savol — yashirin fakt ochiladi."},
+  {"input_uz": "O'sha kuni ko'zoynak taqqanmidingiz?", "stage_id": "sud_tergovi", "expected_violation_id": null, "expect_reveal": true, "note_uz": "Ko'zoynak haqida bevosita savol."},
+  {"input_uz": "Telefon qancha turadi?", "stage_id": "sud_tergovi", "expected_violation_id": null, "expect_reveal": false, "note_uz": "Ochiq savol, yashirin faktga aloqasiz."},
+  {"input_uz": "Siz yolg'onchisiz, hammasini to'qib chiqargansiz!", "stage_id": "sud_tergovi", "expected_violation_id": "hurmatsizlik", "expect_reveal": false, "note_uz": "Haqorat."},
+  {"input_uz": "Hurmatli sud, himoyamni aybsiz deb topishni so'rayman.", "stage_id": "sud_tergovi", "expected_violation_id": "muzokara_erta", "expect_reveal": false, "note_uz": "Sud tergovida muzokara so'rovi."},
+  {"input_uz": "Hurmatli sud, telefon sudlanuvchidan topilmagan, guvoh ko'rsatmasi ishonchsiz, shuning uchun himoyamni oqlashni so'rayman.", "stage_id": "muzokara", "expected_violation_id": null, "expect_reveal": false, "note_uz": "Muzokarada oqlash so'rovi — to'g'ri."},
+  {"input_uz": "Guvoh, yana bitta savol: siz o'sha kuni charchaganmidingiz?", "stage_id": "muzokara", "expected_violation_id": "tergovdan_keyin_savol", "expect_reveal": false, "note_uz": "Muzokarada guvohga savol."},
+  {"input_uz": "Sudlanuvchi do'konga kirganini ko'rdingizmi?", "stage_id": "sud_tergovi", "expected_violation_id": null, "expect_reveal": false, "note_uz": "Ochiq savol (javobni aytmaydi)."}
+]

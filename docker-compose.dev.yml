@@ -1,0 +1,41 @@
+# Ishlab chiqish rejimi (hot reload):
+#   docker compose -f docker-compose.dev.yml up --build
+#   frontend: http://localhost:5173/intro.html   backend: http://localhost:8000/docs
+name: casecraft-dev
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: test   # pytest ham bor
+    env_file:
+      - path: server/.env
+        required: false
+    environment:
+      CORS_ORIGINS: http://localhost:5173
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    working_dir: /app/server
+    volumes:
+      - ./server:/app/server
+      - ./content:/app/content
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ./web
+      target: dev
+    environment:
+      VITE_API_URL: http://localhost:8000
+      CHOKIDAR_USEPOLLING: "true"   # Windows/macOS bind mount'da fayl o'zgarishlarini sezish
+    volumes:
+      - ./web:/web
+      - web-node-modules:/web/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+
+volumes:
+  web-node-modules:

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <!-- Sudlanuvchi (to‘qima shaxs) — yuzsiz navy siluet, oltin kontur. Real odamga o‘xshamaydi.
+       3D portretlar bilan bir xil kadr: bosh ~y 110–566, yelka ~y 670–800. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2a45"/>
+      <stop offset="0.55" stop-color="#121d33"/>
+      <stop offset="1" stop-color="#0a1222"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="450" cy="360" r="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9a45c" stop-opacity="0.26"/>
+      <stop offset="0.45" stop-color="#9c7b3c" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#9c7b3c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="450" cy="520" r="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0.55" stop-color="#05090f" stop-opacity="0"/>
+      <stop offset="1" stop-color="#05090f" stop-opacity="0.7"/>
+    </radialGradient>
+    <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22345c"/>
+      <stop offset="0.5" stop-color="#162645"/>
+      <stop offset="1" stop-color="#0d182e"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0d596"/>
+      <stop offset="0.5" stop-color="#d9b56e"/>
+      <stop offset="0.78" stop-color="#c9a45c" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#c9a45c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.62" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.9" stop-color="#e2c88f" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#e2c88f" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <path id="body" d="M385 520 L385 600 C385 640 370 660 340 672 C250 700 140 730 80 790 C30 840 10 940 -12 1010 L-12 1220 L912 1220 L912 1010 C890 940 870 840 820 790 C760 730 650 700 560 672 C530 660 515 640 515 600 L515 520 Z"/>
+    <path id="head" d="M450 110 C545 110 612 180 612 300 C612 360 606 400 598 430 C590 480 560 525 518 548 C495 560 470 566 450 566 C430 566 405 560 382 548 C340 525 310 480 302 430 C294 400 288 360 288 300 C288 180 355 110 450 110 Z"/>
+    <path id="earR" d="M604 328 C630 318 642 356 636 392 C632 418 617 432 600 430 Z"/>
+    <path id="earL" d="M296 328 C270 318 258 356 264 392 C268 418 283 432 300 430 Z"/>
+  </defs>
+
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <rect width="900" height="1200" fill="url(#halo)"/>
+
+  <!-- yumshoq oltin nur (kontur ortida) -->
+  <g fill="none" stroke="#c9a45c" stroke-opacity="0.55" stroke-width="16" filter="url(#glow)">
+    <use href="#body"/>
+    <use href="#head"/>
+  </g>
+
+  <!-- siluet: tana va quloqlar, ularning konturi; bosh eng oxirida (bo‘yin chizig‘ini yopadi) -->
+  <g fill="url(#fill)">
+    <use href="#body"/>
+    <use href="#earR"/>
+    <use href="#earL"/>
+  </g>
+  <use href="#body" fill="url(#sheen)"/>
+
+  <!-- yoqa (trikotaj) -->
+  <path d="M340 672 C385 728 515 728 560 672" fill="none" stroke="#d9b56e" stroke-opacity="0.5" stroke-width="3"/>
+  <path d="M352 690 C395 742 505 742 548 690" fill="none" stroke="#d9b56e" stroke-opacity="0.22" stroke-width="2"/>
+
+  <g fill="none" stroke="url(#rim)" stroke-width="4.5" stroke-linejoin="round">
+    <use href="#body"/>
+    <use href="#earR"/>
+    <use href="#earL"/>
+  </g>
+
+  <use href="#head" fill="url(#fill)"/>
+  <use href="#head" fill="url(#sheen)"/>
+  <use href="#head" fill="none" stroke="url(#rim)" stroke-width="4.5" stroke-linejoin="round"/>
+
+  <rect width="900" height="1200" fill="url(#vig)"/>
+</svg>

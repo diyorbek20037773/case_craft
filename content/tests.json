@@ -1,0 +1,72 @@
+[
+  {
+    "input_uz": "Mansur Rahimov, voqea paytida sudlanuvchini qaysi masofadan va qanday sharoitda ko'rdingiz? Ko'rishingizga biror narsa to'sqinlik qildimi?",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": null,
+    "expect_reveal": true,
+    "note_uz": "Ochiq savol, ko'rish sharoiti haqida. Guvoh ko'zoynaksiz bo'lganini ochadi. Sudya to'xtatmasligi kerak."
+  },
+  {
+    "input_uz": "Uzoqdagi narsalarni qanday ko'rasiz? O'sha kuni ish paytida ko'rishingiz uchun nima taqib yurgan edingiz?",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": null,
+    "expect_reveal": true,
+    "note_uz": "Ko'rish qobiliyati va ko'zoynak haqida yo'naltirmaydigan ochiq savol. Fakt ochiladi."
+  },
+  {
+    "input_uz": "Siz o'sha kuni ko'zoynaksiz edingiz, to'g'rimi?",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": "yonaltiruvchi_savol",
+    "expect_reveal": false,
+    "note_uz": "Haqiqiy fakt bilan mos kelsa ham savol yo'naltiruvchi. Raislik qiluvchi rad etadi, guvoh faktni ochmaydi. Kalit so'z «ko'zoynaksiz» bor, shuning uchun kod avval qoidabuzarlikni tekshirishi shart."
+  },
+  {
+    "input_uz": "Voqeani o'z so'zlaringiz bilan batafsil aytib bering: o'sha kuni nimani ko'rdingiz va nima qildingiz?",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": null,
+    "expect_reveal": false,
+    "note_uz": "To'g'ri, ochiq savol. Guvoh ommaviy faktlarni aytadi. Ko'rish sharoiti so'ralmagani uchun yashirin fakt ochilmaydi. Savolda «ko'rdingiz» so'zi bor: server uni yakka kalit so'z qilmasligi kerak."
+  },
+  {
+    "input_uz": "Siz yolg'on gapiryapsiz! Aniq ko'rmagan bo'lsangiz ham sudlanuvchini ko'rsatdingiz, ahmoqona javob bermang!",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": "bosim_haqorat",
+    "expect_reveal": false,
+    "note_uz": "Guvohga bosim va haqorat. Raislik qiluvchi ogohlantiradi. Guvoh yashirin faktni ochmaydi."
+  },
+  {
+    "input_uz": "Hurmatli sud, xulosa qilib aytganda, guvohning ko'rsatuvi ishonchsiz, shuning uchun sudlanuvchini oqlashni so'rayman.",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": "bosqichdan_tashqari",
+    "expect_reveal": false,
+    "note_uz": "So'roq bosqichida muzokara nutqi. Raislik qiluvchi muzokara vaqti kelmaganini aytib, guvohga savol berishni talab qiladi."
+  },
+  {
+    "input_uz": "Guvoh, sizning oylik maoshingiz qancha va oxirgi saylovda qaysi partiyaga ovoz bergansiz?",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": "aloqasiz_savol",
+    "expect_reveal": false,
+    "note_uz": "Ishga aloqasi yo'q savol. Sudya rad etadi."
+  },
+  {
+    "input_uz": "Men hozir guvohga savol beraman, ruxsat so'ramayman! Prokuror, gapimni bo'lmang!",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": "ruxsatsiz_gapirish",
+    "expect_reveal": false,
+    "note_uz": "Raislik qiluvchining ruxsatisiz gapirish va boshqa ishtirokchini bo'lish. Raislik qiluvchi tartibga chaqiradi."
+  },
+  {
+    "input_uz": "Hurmatli sud, ish materiallariga ko'ra aybni bevosita tasdiqlovchi yagona dalil guvohning tanib olishi. Guvoh voqeani 20 metr masofadan va ko'zoynaksiz ko'rganini aytdi, video esa yuzni ko'rsatmaydi, noutbuk sudlanuvchida topilmagan. Isbotlanmagan shubhalar sudlanuvchi foydasiga hal qilinadi (JPK 23-modda), shuning uchun sudlanuvchini oqlashni so'rayman.",
+    "stage_id": "muzokara",
+    "expected_violation_id": null,
+    "expect_reveal": false,
+    "note_uz": "Muzokara bosqichida to'g'ri nutq: tekshirilgan dalillarga tayanadi, moddaga havola qiladi. Sudya to'xtatmasligi kerak. «Oqlashni so'rayman» bu bosqichda qoidabuzarlik emas (regexlar faqat guvoh_soroq bosqichida ishlaydi)."
+  },
+  {
+    "input_uz": "Hurmatli raislik qiluvchi, ruxsat bersangiz, guvohga bir nechta savol bermoqchiman.",
+    "stage_id": "guvoh_soroq",
+    "expected_violation_id": null,
+    "expect_reveal": false,
+    "note_uz": "So'z uchun to'g'ri murojaat: ruxsat so'rash. Sudya ruxsat beradi, to'xtatmaydi."
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "_izoh": "Guvoh harakati sozlamasi. Faqat Meshy kliplari + 3 ta kichik qo'shimcha qatlam (nigoh, bosh chayqash, og'iz). Qo'llar uchun IK YO'Q — faqat kliplar. layers — standart yoqilgan qatlamlar (URL: ?layers=look,shake,mouth yoki none). talkWeight — javobda gapirish klipi og'irligi (qolgani idle), qo'l nuqsonlari sababli 0.42. thinkWeight — o'ylashda think klipi og'irligi. look — bo'yin 40% / bosh 60%, chegarasi ±40° yaw (guvoh sudga yuzlangan — tinglaganda kameraga shuncha buriladi) / ±15° pitch. shake — 'yo'q' bosh chayqash (nigoh ustiga qo'shiladi).",
+  "layers": [
+    "look",
+    "shake",
+    "mouth"
+  ],
+  "talkWeight": 0.6,
+  "thinkWeight": 1,
+  "fade": 0.35,
+  "look": {
+    "neck": 0.4,
+    "head": 0.6,
+    "yawDeg": 40,
+    "pitchDeg": 15
+  },
+  "shake": {
+    "deg": 12,
+    "cycles": 3,
+    "dur": 1.1
+  },
+  "_izoh_arms": "Qo'l/yelka yumshatish (arms.ts), barcha burchaklar bind (rest) pozaga nisbatan, gradus. ?arms=raw — asl kliplar (kesilmagan, timeScale 1, talkWeight raw.talkWeight, tuzatishsiz). talkWeight 0.6 — gapirish klipi og'irligi (qolgani idle; 0.4 da qo'llar 'o'lik' bo'ladi). fadeAnswer — javobga o'tish (think -> talk) aralashuvi, s. talkTimeScale — talk kliplari tezligi. cut — talk klipidan faqat shu oraliq (asl soniya) ping-pong loop qilinadi: talk_both 0.45–0.7 s (keskin ko'tarilish, yelka cho'kadi) kesilgan, qoladi 0.8–1.45 (kaftlar ochiq; 1.45 dan keyin qo'l minbarga kiradi); talk_right 0.45–0.8 s (tirsak 107°) va 2.6–3.1 s (o'mrov 35–37°) kesilgan, qoladi 0.9–2.15. upperArmMaxDeg/SoftDeg — LeftArm/RightArm og'ishi soft dan boshlab yumshoq (tanh) siqiladi, max dan oshmaydi. upperArmTwist* — yelka suyagining o'z o'qi bo'yicha roll'i (talk_both −55°). elbow* — tirsak bukilishi. Shu uchtasi va shoulderMax think klipida bo'shatiladi (qo'l boshga yetishi uchun). foreArmTwistKeep — ForeArm o'z roll'ining qolgan ulushi. handTwistFreeDeg/Keep — Hand roll'i (kliplarda ±110°): free gacha tegilmaydi, ortig'idan Keep ulushi qoladi. handTwistToForeArm — qolgan bilak roll'ining shu ulushi tirsakka o'tkaziladi (kaft holati o'zgarmaydi). shoulderMax/SoftDeg — o'mrov (clavicle) og'ishi chegarasi; shoulderKeep — o'mrov keskin (tez) harakatining qolgan ulushi, shoulderFollow — sekin holatni kuzatish tezligi (1/s).",
+  "arms": {
+    "raw": {
+      "talkWeight": 0.7
+    },
+    "talkTimeScale": 0.85,
+    "cut": {
+      "talk_both": [
+        0.8,
+        1.45
+      ],
+      "talk_right": [
+        0.9,
+        2.15
+      ]
+    },
+    "upperArmMaxDeg": 35,
+    "upperArmSoftDeg": 22,
+    "upperArmTwistMaxDeg": 20,
+    "upperArmTwistSoftDeg": 12,
+    "elbowMaxDeg": 70,
+    "elbowSoftDeg": 55,
+    "foreArmTwistKeep": 0.5,
+    "handTwistFreeDeg": 10,
+    "handTwistKeep": 0.6,
+    "handTwistToForeArm": 0.4,
+    "shoulderMaxDeg": 15,
+    "shoulderSoftDeg": 8,
+    "shoulderKeep": 0.5,
+    "shoulderFollow": 2
+  },
+  "fadeAnswer": 0.9,
+  "_izoh_posture": "Qadd (posture.ts): guvoh tik tursin. Asosiy burchaklar posture.ts POSTURE jadvalida (umurtqa -2°, o'mrov 4° orqaga, bosh tekis, yuqori qo'l 11°, bilak 5°, tirsak 12°, kaft songa, idle x0.75). Bu yerda — tuzatish kuchi (0..1): talkBody/talkArms — talk_* kliplarida (imo-ishora o'lmasin), thinkBody/thinkArms — think klipida (thinkArms 0: qo'l boshga yetsin). ?posture=0 — o'chirish.",
+  "posture": {
+    "talkBody": 0.5,
+    "talkArms": 0.2,
+    "thinkBody": 0.6,
+    "thinkArms": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "_izoh": "Og'iz (iyak) deformatsiyasi sozlamasi. Koordinatalar: personaj bind-pozasi, metr, +Y yuqori, +Z oldinga, Head suyagi bind-pozitsiyasiga nisbatan. Boshlang'ich qiymatlar: node web/scripts/meshy/face-probe.mjs <asl.glb> (old profil). ?debug=1 da qizil — siljiydigan soha, yashil — og'iz chizig'i, sariq nuqta — jag' bo'g'imi.",
+  "mouthY": 0.0095,
+  "mouthHalfWidth": 0.024,
+  "chin": [0.0, -0.016, 0.082],
+  "radius": [0.05, 0.046, 0.066],
+  "hinge": [0.0, 0.03, -0.02],
+  "maxAngle": 0.1,
+  "back": 0.003,
+  "lipBand": 0.008,
+  "lipWeight": 0.6,
+  "seamGap": 0.0045,
+  "seamDarken": 0.85,
+  "frontZ": 0.045
+}

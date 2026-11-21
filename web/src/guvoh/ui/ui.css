@@ -1,0 +1,688 @@
+/*
+ * CaseCraft asosiy sahna — kirish qismi (src/intro/intro.css) bilan bir xil vizual tokenlar.
+ * Navy shisha + antik oltin, Cormorant Garamond (sarlavha, ball) + Manrope (matn) + Courier Prime (bayonnoma vaqti).
+ * .glass / .glass-strong — shisha panellar; .q-low (ildizda, tier 0 yoki ?q=low) — blur o'chadi, fon to'qroq.
+ * Shriftlar public/intro/fonts dan havola qilinadi (nusxa yo'q, SIL OFL 1.1).
+ */
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/intro/fonts/cormorant-garamond-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/intro/fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/intro/fonts/manrope-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/intro/fonts/manrope-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/intro/fonts/courier-prime-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Courier Prime';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/intro/fonts/courier-prime-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+  --color-navy-950: #08111f;
+  --color-navy-900: #0c1629;
+  --color-navy-850: #0f1b33;
+  --color-navy-800: #13223f;
+  --color-navy-700: #1c2f54;
+  --color-gold: #c9a45c;
+  --color-gold-soft: #e2c88f;
+  --color-gold-deep: #9c7b3c;
+  --color-ivory: #f1ead9;
+  --color-paper: #f4eddc;
+  --color-ink: #1a2238;
+  --font-display: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'Courier Prime', ui-monospace, 'Courier New', monospace;
+}
+
+:root {
+  --accent: #c9a45c;
+  --accent-soft: #e2c88f;
+  --accent-ink: #08111f;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --glass-bg: rgb(15 27 51 / 0.52);
+  --glass-bg-strong: rgb(12 22 41 / 0.7);
+  --glass-bg-chip: rgb(12 22 41 / 0.5);
+  --glass-blur: blur(16px) saturate(140%);
+  --glass-blur-strong: blur(18px) saturate(150%);
+  --glass-border: 1px solid rgb(226 200 143 / 0.26);
+  --glass-border-strong: 1px solid rgb(226 200 143 / 0.36);
+  --glass-highlight: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
+  --glass-shadow: 0 24px 60px -24px rgb(0 0 0 / 0.65), 0 2px 8px -2px rgb(0 0 0 / 0.3);
+  --solid-bg: rgb(13 24 45 / 0.82);
+  --solid-bg-strong: rgb(11 20 38 / 0.88);
+  --glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.06), transparent 40%);
+  --glass-topline: linear-gradient(90deg, transparent, rgb(240 210 150 / 0.75), transparent);
+  --gold-gradient: linear-gradient(180deg, #d8b770 0%, var(--accent) 55%, #b48d48 100%);
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-hover: 140ms;
+  --t-press: 80ms;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-gold-soft);
+    outline-offset: 2px;
+  }
+  [tabindex='-1']:focus {
+    outline: none;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-gold) 45%, transparent);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* ---------- Shisha panellar ---------- */
+  .glass,
+  .glass-strong {
+    position: relative;
+    border-radius: var(--radius);
+    box-shadow: var(--glass-highlight), var(--glass-shadow);
+  }
+  .glass::before,
+  .glass-strong::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 14%;
+    right: 14%;
+    height: 1px;
+    background: var(--glass-topline);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .glass {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.05), transparent 40%), var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+  }
+  .glass-strong {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.06), transparent 35%), var(--glass-bg-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    border: var(--glass-border-strong);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+  }
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(201 164 92 / 0.7), transparent);
+  }
+
+  /* ---------- Tugmalar ---------- */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-sm);
+    background: var(--gold-gradient);
+    color: var(--accent-ink);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    box-shadow:
+      0 0 0 1px rgb(255 240 200 / 0.35) inset,
+      0 10px 30px -10px rgb(201 164 92 / 0.55);
+    transition:
+      transform var(--t-hover) var(--ease-out),
+      box-shadow var(--t-hover) ease,
+      filter var(--t-hover) ease,
+      opacity var(--t-hover) ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover:not(:disabled, [aria-disabled='true']) {
+    box-shadow:
+      0 0 0 1px rgb(255 240 200 / 0.5) inset,
+      0 14px 36px -10px rgb(201 164 92 / 0.7);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: var(--glass-border-strong);
+    background: var(--glass-bg-chip);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-highlight);
+    color: var(--color-ivory);
+    font-weight: 600;
+    font-size: 14px;
+    transition:
+      transform var(--t-hover) var(--ease-out),
+      filter var(--t-hover) ease,
+      border-color var(--t-hover) ease,
+      background var(--t-hover) ease,
+      color var(--t-hover) ease,
+      opacity var(--t-hover) ease;
+    cursor: pointer;
+  }
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: var(--glass-bg-strong);
+    color: #fff;
+  }
+  .btn-secondary[aria-pressed='true'] {
+    border-color: var(--accent);
+    background: rgb(201 164 92 / 0.2);
+    color: #fff;
+  }
+  /* Faqat ikonkali tugma — 44px nishon */
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    color: rgb(241 234 217 / 0.85);
+    cursor: pointer;
+    transition:
+      transform var(--t-hover) var(--ease-out),
+      background var(--t-hover) ease,
+      color var(--t-hover) ease;
+  }
+  .icon-btn:hover {
+    background: rgb(255 255 255 / 0.07);
+    color: var(--color-ivory);
+  }
+  /* Matn havola tugmasi (ikkinchi darajali harakat) */
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    padding: 0 0.5rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent-soft);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    text-decoration-color: rgb(226 200 143 / 0.45);
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: color var(--t-hover) ease, text-decoration-color var(--t-hover) ease;
+  }
+  .link-btn:hover:not(:disabled) {
+    color: #fff;
+    text-decoration-color: var(--accent-soft);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.75rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: var(--radius-pill);
+    border: var(--glass-border-strong);
+    background: var(--glass-bg-chip);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-highlight);
+    color: rgb(241 234 217 / 0.94);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+      background 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform var(--t-hover) var(--ease-out);
+  }
+  .chip:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Yagona holatlar: hover 1px ko'tarilish, bosish .98, fokus oltin halqa, o'chiq .45 */
+  :is(.btn-primary, .btn-secondary, .chip, .icon-btn):hover:not(:disabled, [aria-disabled='true']) {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+  }
+  :is(.btn-primary, .btn-secondary, .chip, .icon-btn, .link-btn):active:not(:disabled, [aria-disabled='true']) {
+    transform: scale(0.98);
+    transition-duration: var(--t-press);
+  }
+  :is(.btn-primary, .btn-secondary, .chip, .icon-btn, .link-btn):focus-visible {
+    outline: 2px solid var(--color-gold-soft);
+    outline-offset: 2px;
+  }
+  :is(.btn-primary, .btn-secondary, .chip, .icon-btn, .link-btn):disabled,
+  :is(.btn-primary, .btn-secondary)[aria-disabled='true'] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+  }
+
+  /* Matn kiritish */
+  .field {
+    border-radius: var(--radius-sm);
+    border: var(--glass-border-strong);
+    background: var(--glass-bg-strong);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-highlight);
+    color: var(--color-ivory);
+    transition: border-color var(--t-hover) ease, box-shadow var(--t-hover) ease;
+  }
+  .field::placeholder {
+    color: rgb(241 234 217 / 0.6);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--accent-soft);
+    box-shadow: var(--glass-highlight), 0 0 0 3px rgb(201 164 92 / 0.22);
+  }
+
+  /* Spinner (Yuborish, ochilmoqda) */
+  .spin {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    animation: cc-spin 0.8s linear infinite;
+  }
+}
+
+/* ---------- So'z chipi (markaz-tepa) ---------- */
+.floor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.5rem;
+  max-width: min(30rem, calc(100vw - 1.5rem));
+  padding: 0.4rem 1.05rem;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-ivory);
+  border: var(--glass-border-strong);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-highlight), 0 10px 30px -14px rgb(0 0 0 / 0.7);
+  transition: background 300ms ease, color 300ms ease, box-shadow 300ms ease;
+}
+.floor-chip .dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgb(226 200 143 / 0.18);
+}
+.floor-chip[data-mine='true'] {
+  background: var(--gold-gradient);
+  color: var(--accent-ink);
+  border-color: rgb(255 240 200 / 0.6);
+  box-shadow:
+    0 0 0 4px rgb(201 164 92 / 0.25),
+    0 12px 30px -10px rgb(201 164 92 / 0.6);
+  animation: cc-floor-pulse 1.6s ease-in-out infinite;
+}
+.floor-chip[data-mine='true'] .dot {
+  background: var(--accent-ink);
+  box-shadow: none;
+}
+.floor-chip[data-asked='true'] .dot {
+  animation: cc-dot 1.2s ease-in-out infinite;
+}
+
+/* ---------- Qoidabuzarlik banneri + vinyetka ---------- */
+.violation-banner {
+  animation: cc-slide-down 300ms var(--ease-out) both;
+}
+.violation-banner[data-leaving='true'] {
+  animation: cc-slide-up 260ms ease-in both;
+}
+.violation-vignette {
+  background: radial-gradient(ellipse at center, transparent 45%, rgb(190 18 60 / 0.45) 100%);
+  animation: cc-vignette 640ms ease-out both;
+}
+
+/* ---------- Murojaat: imkoniyat paytida oltin puls ---------- */
+.cue-pulse {
+  border-color: var(--accent) !important;
+  animation: cc-cue 1.6s ease-in-out infinite;
+}
+
+/* ---------- Bayonnoma ---------- */
+.record-open {
+  animation: cc-panel-in 320ms var(--ease-out) both, cc-gold-flash 1.2s ease-out both;
+}
+.count-pop {
+  animation: cc-pop 900ms var(--ease-out);
+}
+
+/* Subtitr o'qilish chizig'i */
+.caption-progress {
+  transform-origin: left center;
+  transition: transform 160ms linear;
+}
+
+/* Natija: mezon tasmasi stagger */
+.stagger-in {
+  animation: cc-rise 420ms var(--ease-out) both;
+}
+
+/* Loader oltin chiziq */
+.loader-shimmer {
+  background: linear-gradient(90deg, #9c7b3c, #e2c88f, #c9a45c);
+}
+
+/* Bosh sahna vinyetkasi (StartCard ortida) */
+.start-vignette {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 100%, rgb(8 17 31 / 0.82), transparent 70%),
+    radial-gradient(ellipse at center, transparent 55%, rgb(8 17 31 / 0.55) 100%);
+}
+
+/* Tayyor savol chiplari: telefonda gorizontal skroll, o'ng chetda yengil so'nish; sm+ da qatorlarga o'raladi */
+.chip-row {
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+}
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 640px) {
+  .chip-row {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* Ingichka skroll (panellar) */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(226 200 143 / 0.3) transparent;
+}
+
+/* ---------- Kamera tanlovi (characters/CameraPicker) — TopBar guruhida, intro uslubida ----------
+   Komponentning o'zi o'zgartirilmaydi: o'rni va ko'rinishi shu o'ram (.cam-slot) orqali beriladi. */
+.cam-slot > div {
+  position: relative;
+  top: auto;
+  right: auto;
+}
+.cam-slot > div > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0 0.95rem;
+  border-radius: var(--radius-pill);
+  border: var(--glass-border-strong);
+  background: var(--glass-bg-chip);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-highlight);
+  color: var(--color-ivory);
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color var(--t-hover) ease, transform var(--t-hover) var(--ease-out);
+}
+.cam-slot > div > button:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.cam-slot > div > button::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background-color: var(--accent-soft);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.5-2h7.6l1.5 2h2.2A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.5-2h7.6l1.5 2h2.2A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z'/%3E%3Ccircle cx='12' cy='13' r='3.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.cam-slot > div > button > span {
+  color: var(--accent-soft);
+}
+/* telefonda faqat ikon (44 px) — aria-label "Kadr: ..." saqlanadi */
+@media (max-width: 639px) {
+  .cam-slot > div > button {
+    width: 2.75rem;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+    gap: 0;
+  }
+  .cam-slot > div > button > span {
+    display: none;
+  }
+}
+.cam-slot [role='menu'] {
+  border-radius: var(--radius);
+  border: var(--glass-border-strong);
+  background: var(--solid-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  width: 12rem;
+}
+.cam-slot [role='menu'] button {
+  font-size: 14px;
+  color: rgb(241 234 217 / 0.9);
+}
+.cam-slot [role='menu'] button[aria-checked='true'] {
+  color: var(--accent-soft);
+}
+.cam-slot [role='menu'] button > span:last-child {
+  font-size: 12px;
+  color: rgb(241 234 217 / 0.7);
+}
+
+/* ---------- Unumdorlik zaxirasi (T3): blur yo'q, fon to'q ---------- */
+.q-low :is(.glass, .glass-strong, .chip, .btn-secondary, .field, .floor-chip, .cam-slot > div > button, .cam-slot [role='menu']) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.q-low :is(.glass, .chip, .btn-secondary, .cam-slot > div > button) {
+  background: var(--glass-sheen), var(--solid-bg);
+}
+.q-low :is(.glass-strong, .field, .floor-chip:not([data-mine='true'])) {
+  background: var(--glass-sheen), var(--solid-bg-strong);
+}
+.q-low .btn-secondary[aria-pressed='true'] {
+  background: rgb(60 50 30 / 0.9);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :is(.glass, .chip, .btn-secondary) {
+    background: var(--glass-sheen), var(--solid-bg);
+  }
+  :is(.glass-strong, .field) {
+    background: var(--glass-sheen), var(--solid-bg-strong);
+  }
+}
+
+/* ---------- Animatsiyalar ---------- */
+@keyframes cc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes cc-floor-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgb(201 164 92 / 0.25),
+      0 12px 30px -10px rgb(201 164 92 / 0.6);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgb(201 164 92 / 0.12),
+      0 12px 34px -8px rgb(201 164 92 / 0.75);
+  }
+}
+@keyframes cc-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes cc-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cc-slide-up {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@keyframes cc-vignette {
+  0% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes cc-cue {
+  0%,
+  100% {
+    box-shadow: var(--glass-highlight), 0 0 0 0 rgb(201 164 92 / 0.5);
+  }
+  50% {
+    box-shadow: var(--glass-highlight), 0 0 0 6px rgb(201 164 92 / 0.18);
+  }
+}
+@keyframes cc-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cc-gold-flash {
+  0% {
+    box-shadow: var(--glass-highlight), var(--glass-shadow), 0 0 0 2px rgb(226 200 143 / 0.9), 0 0 36px rgb(201 164 92 / 0.55);
+  }
+  100% {
+    box-shadow: var(--glass-highlight), var(--glass-shadow), 0 0 0 0 rgb(226 200 143 / 0), 0 0 0 rgb(201 164 92 / 0);
+  }
+}
+@keyframes cc-pop {
+  0% {
+    transform: scale(1);
+    background: rgb(201 164 92 / 0.95);
+    color: #08111f;
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes cc-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floor-chip[data-mine='true'],
+  .floor-chip[data-asked='true'] .dot,
+  .cue-pulse,
+  .record-open,
+  .count-pop,
+  .stagger-in,
+  .violation-banner,
+  .violation-vignette {
+    animation: none !important;
+  }
+  .violation-vignette {
+    display: none;
+  }
+  .caption-progress,
+  :is(.btn-primary, .btn-secondary, .chip, .icon-btn) {
+    transition: none !important;
+  }
+  .spin {
+    animation-duration: 2.4s;
+  }
+}
+
+/* Cormorant raqamlari standartda "eski uslub" (1 -> I ga o'xshaydi) — ball va modda raqamlari tekis bo'lsin */
+.font-display {
+  font-variant-numeric: lining-nums tabular-nums;
+}

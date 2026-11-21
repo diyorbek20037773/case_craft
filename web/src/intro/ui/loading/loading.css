@@ -1,0 +1,621 @@
+/*
+ * Paket A uslublari: yuklanish (sahna fade, TopBar chizig‘i), titul (logo, yulduz, "Bilasizmi?"),
+ * ovozga taklif va "Sud kelmoqda" marosimi. Ranglar literal — Tailwind theme o‘zgaruvchilariga bog‘liq emas.
+ * Har effektda: prefers-reduced-motion va .q-low (ildizda) hisobga olingan.
+ */
+
+/* ---------- 3D sahna: lazy chunk kelguncha sokin navy fon, keyin yumshoq paydo bo‘lish ---------- */
+.ld-scene-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, #13223f 0%, #0a1324 55%, #04060b 100%);
+}
+@keyframes ld-scene-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.ld-scene-in {
+  animation: ld-scene-in 900ms ease-out both;
+}
+
+/* Marosim paytida interfeys qatlamlari yumshoq yo‘qoladi (3D kamera uchishi ko‘rinsin) */
+/* transform yo‘q — ichidagi position:fixed elementlar (ish papkasi paneli) sakramasin */
+.ld-stage-out {
+  opacity: 0;
+  transition: opacity 420ms ease;
+  pointer-events: none !important;
+}
+.ld-topbar-out {
+  opacity: 0;
+  transition: opacity 360ms ease;
+  pointer-events: none;
+}
+
+/* ---------- TopBar yuklanish chizig‘i ---------- */
+.ld-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+.ld-line[data-out] {
+  opacity: 0;
+}
+.ld-line-track {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgb(201 164 92 / 0.16);
+}
+.ld-line-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #9c7b3c, #e2c88f 70%, #fff3d0);
+  box-shadow: 0 0 10px rgb(226 200 143 / 0.7);
+  transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ld-line-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgb(255 246 220 / 0.85), transparent);
+  animation: ld-sweep 1.6s ease-in-out infinite;
+}
+@keyframes ld-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+.ld-line-text {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: calc(100vw - 2rem);
+  margin: 0;
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(4 6 11 / 0.55);
+  color: rgb(241 234 217 / 0.86);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ld-line-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #e2c88f;
+  box-shadow: 0 0 8px #e2c88f;
+  animation: ld-dot 1.2s ease-in-out infinite;
+}
+@keyframes ld-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (max-width: 380px) {
+  .ld-line-text {
+    font-size: 0.6875rem;
+  }
+}
+@media (max-width: 639px) {
+  .ld-line-text--yield {
+    visibility: hidden;
+  }
+}
+
+/* ---------- Ovozga taklif (titul, birinchi 8 s) ---------- */
+.ld-sound-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 12px;
+  border: 1.5px solid rgb(226 200 143 / 0.85);
+  box-shadow: 0 0 14px rgb(201 164 92 / 0.45);
+  pointer-events: none;
+  animation: ld-ring 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+@keyframes ld-ring {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.95;
+  }
+  70%,
+  100% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+}
+.ld-sound-hint {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  margin: 0;
+  padding: 0.22rem 0.7rem;
+  border: 1px solid rgb(201 164 92 / 0.6);
+  border-radius: 999px;
+  background: rgb(8 17 31 / 0.82);
+  color: #e2c88f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: ld-hint-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.ld-sound-hint::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border-left: 1px solid rgb(201 164 92 / 0.6);
+  border-top: 1px solid rgb(201 164 92 / 0.6);
+  background: rgb(8 17 31 / 0.95);
+}
+@keyframes ld-hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Titul ---------- */
+/* 548px — logodan boshqa hamma narsa (shior, izoh, yulduzli CTA, "Bilasizmi?"): 1280×720 va 1366×657 da ham sig‘adi */
+.ta-logo {
+  width: min(78vw, clamp(140px, calc((100svh - 548px) * 1.2), 420px));
+  height: auto;
+}
+@media (max-width: 639px) {
+  .ta-logo {
+    width: min(50vw, clamp(120px, calc((100svh - 560px) * 0.75), 210px));
+  }
+}
+/* mobil: matn tepada, CTA pastda — o‘rtadagi figuralar ochiq qoladi */
+.ta-scrim-m {
+  display: none;
+}
+@media (max-width: 639px) {
+  .ta-scrim-m {
+    display: block;
+    background: linear-gradient(
+      180deg,
+      rgb(8 17 31 / 0.62) 0%,
+      rgb(8 17 31 / 0.45) 38%,
+      transparent 52%,
+      transparent 64%,
+      rgb(8 17 31 / 0.55) 78%,
+      rgb(8 17 31 / 0.7) 100%
+    );
+  }
+}
+
+/* 8 qirrali yulduz "Boshlash" ortida. Uchlari tugmadan ~1,8 rem chiqadi (yarim balandlik 0,96 × o‘lcham/2);
+   TitleScreen oraliqlari (tepada mt-10, "Bilasizmi?" uchun sm:mt-11 / mobil mt-10) shunga hisoblangan —
+   yulduz izoh matniga ham, "Bilasizmi?" qatoriga ham tegmaydi. */
+.ld-star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 8.5rem;
+  height: 8.5rem;
+  margin: -4.25rem 0 0 -4.25rem;
+  pointer-events: none;
+}
+@media (max-width: 639px) {
+  .ld-star {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: -3.75rem 0 0 -3.75rem;
+  }
+}
+.ld-star-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 5px rgb(226 200 143 / 0.55));
+  animation: ld-star-spin 60s linear 1.9s infinite;
+}
+.ld-star-sq {
+  fill: none;
+  stroke: #e2c88f;
+  stroke-width: 1.1;
+  stroke-opacity: 0.7;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ld-star-draw 1.4s cubic-bezier(0.45, 0, 0.2, 1) 0.5s forwards;
+}
+.ld-star-sq2 {
+  animation-delay: 0.62s;
+}
+@keyframes ld-star-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ld-star-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.q-low .ld-star-svg {
+  filter: none;
+  animation: none;
+}
+
+/* "Bilasizmi?" */
+.ld-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  width: min(100%, 34rem);
+  min-height: 4.4rem;
+}
+.ld-tip-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #e2c88f;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.9);
+}
+.ld-tip-star {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: none;
+  stroke: #e2c88f;
+  stroke-width: 1.4;
+}
+.ld-tip-t {
+  color: rgb(241 234 217 / 0.9);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  text-wrap: balance;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.95);
+}
+/* Faqat almashganda. Ikki nom navbatma-navbat — element qayta yaratilmasdan animatsiya qayta boshlanadi.
+   0 dan emas, 0.55 dan va fill-mode'siz: animatsiya kechiksa yoki to‘xtab qolsa ham matn o‘qiladi. */
+.ld-tip-swap1 {
+  animation: ld-tip-in1 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ld-tip-swap2 {
+  animation: ld-tip-in2 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ld-tip-lead {
+  color: #f1ead9;
+  font-weight: 700;
+}
+@keyframes ld-tip-in1 {
+  from {
+    opacity: 0.55;
+    transform: translateY(4px);
+  }
+}
+@keyframes ld-tip-in2 {
+  from {
+    opacity: 0.55;
+    transform: translateY(4px);
+  }
+}
+.q-low .ld-tip-swap1,
+.q-low .ld-tip-swap2 {
+  animation: none;
+}
+@media (max-width: 639px) {
+  .ld-tip {
+    min-height: 5.6rem;
+  }
+  .ld-tip-t {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---------- "Sud kelmoqda" marosimi ---------- */
+.lc-root {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: progress;
+}
+.lc-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9vh;
+  height: 9svh;
+  min-height: 56px;
+  background: #04060b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  transition: transform 650ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.lc-bar-top {
+  top: 0;
+  transform: translateY(-101%);
+  box-shadow: 0 1px 0 rgb(201 164 92 / 0.28);
+}
+.lc-bar-bot {
+  bottom: 0;
+  transform: translateY(101%);
+  box-shadow: 0 -1px 0 rgb(201 164 92 / 0.28);
+}
+.lc-root[data-s='1'] .lc-bar,
+.lc-root[data-s='2'] .lc-bar,
+.lc-root[data-s='3'] .lc-bar,
+.lc-root[data-s='4'] .lc-bar {
+  transform: none;
+}
+.lc-sub {
+  margin: 0;
+  max-width: 46rem;
+  color: #f1ead9;
+  font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.lc-sub-who {
+  color: #e2c88f;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.lc-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-right: -2px;
+  vertical-align: -0.15em;
+  background: #e2c88f;
+  animation: lc-caret 0.9s steps(1) infinite;
+}
+@keyframes lc-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.lc-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 46% 42% at 50% 50%, rgb(4 6 11 / 0.78), rgb(4 6 11 / 0.4) 65%, transparent 100%);
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+.lc-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 400ms ease,
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.lc-root[data-s='3'] .lc-scrim,
+.lc-root[data-s='4'] .lc-scrim,
+.lc-root[data-s='3'] .lc-center,
+.lc-root[data-s='4'] .lc-center {
+  opacity: 1;
+  transform: none;
+}
+.lc-emblem {
+  position: relative;
+  isolation: isolate; /* nur (::after, z-index -1) emblema ortida qoladi, sahna/scrim ortiga tushmaydi */
+  width: min(46vw, 220px);
+  opacity: 0;
+  transform: scale(1.08);
+}
+/* emblema "gullab" chiqadi: 400 ms da opacity 0→1, scale 1.08→1, ortida yumshoq oltin nur */
+.lc-root[data-s='3'] .lc-emblem,
+.lc-root[data-s='4'] .lc-emblem {
+  animation: lc-bloom 400ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes lc-bloom {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.lc-emblem img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 16px 36px rgb(0 0 0 / 0.7)) drop-shadow(0 0 18px rgb(226 200 143 / 0.35));
+}
+.lc-emblem::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  z-index: -1;
+  width: 150%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgb(226 200 143 / 0.34), rgb(201 164 92 / 0.12) 55%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.lc-root[data-s='3'] .lc-emblem::after,
+.lc-root[data-s='4'] .lc-emblem::after {
+  animation: lc-glow 900ms ease-out both;
+}
+@keyframes lc-glow {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+.q-low .lc-emblem img {
+  filter: drop-shadow(0 10px 22px rgb(0 0 0 / 0.6));
+}
+.lc-emblem::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 92%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  transform: translate(-50%, -50%) scale(0.8);
+  border: 1.5px solid rgb(226 200 143 / 0.8);
+  box-shadow: 0 0 30px rgb(201 164 92 / 0.5);
+  opacity: 0;
+}
+.lc-root[data-s='3'] .lc-emblem::before {
+  animation: lc-halo 1s cubic-bezier(0.2, 0.7, 0.2, 1) 120ms both;
+}
+@keyframes lc-halo {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45);
+  }
+}
+.lc-case {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0;
+  color: #f1ead9;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 0.9);
+}
+.lc-case::before,
+.lc-case::after {
+  content: '';
+  width: clamp(1.5rem, 6vw, 4rem);
+  height: 1px;
+  flex-shrink: 0;
+}
+.lc-case::before {
+  background: linear-gradient(90deg, transparent, rgb(201 164 92 / 0.85));
+}
+.lc-case::after {
+  background: linear-gradient(90deg, rgb(201 164 92 / 0.85), transparent);
+}
+.lc-case b {
+  color: #e2c88f;
+  font-weight: 700;
+}
+.lc-curtain {
+  position: absolute;
+  inset: 0;
+  background: #04060b;
+  opacity: 0;
+  transition: opacity 350ms ease-in;
+}
+.lc-root[data-s='4'] .lc-curtain {
+  opacity: 1;
+}
+
+/* ---------- Kamroq harakat ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ld-scene-in,
+  .ld-line-fill::after,
+  .ld-line-dot,
+  .ld-tip-swap1,
+  .ld-tip-swap2,
+  .ld-sound-hint {
+    animation: none;
+  }
+  .ld-line-fill,
+  .ld-stage-out {
+    transition: none;
+  }
+  .ld-sound-ring {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+  .ld-star-svg {
+    animation: none;
+  }
+  .ld-star-sq {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .lc-bar,
+  .lc-center,
+  .lc-scrim {
+    transition: none;
+  }
+  .lc-caret,
+  .lc-root[data-s='3'] .lc-emblem::before {
+    animation: none;
+  }
+  .lc-root[data-s='3'] .lc-emblem,
+  .lc-root[data-s='4'] .lc-emblem {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .lc-root[data-s='3'] .lc-emblem::after,
+  .lc-root[data-s='4'] .lc-emblem::after {
+    animation: none;
+    opacity: 0.7;
+  }
+  .lc-curtain {
+    transition-duration: 300ms;
+  }
+}

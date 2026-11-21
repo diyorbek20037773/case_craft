@@ -1,0 +1,196 @@
+{
+  "_izoh": "Portret koordinatalari 0..1 (x = kenglikka, y = balandlikka nisbatan, y pastga). eyes: [cx, cy, rx, ry]; mouth.seam = lablar orasidagi chiziq; mouth.w = og'izning yarim kengligi; chin = iyak pasti; jawW = jag' siljishining yarim kengligi; focus = kadr markazi (yuz). variantOffset = mouth/blink rasmlari biroz siljigan bo'lsa [dx, dy]. Tekshirish: proto-b.html?debug=1&role=guvoh&jaw=1&blink=1",
+  "sudya": {
+    "eyes": [
+      [
+        0.4475,
+        0.2578,
+        0.022,
+        0.0078
+      ],
+      [
+        0.545,
+        0.2528,
+        0.022,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.5075,
+      "seam": 0.328,
+      "w": 0.04,
+      "chin": 0.375,
+      "jawW": 0.07,
+      "curve": 0
+    },
+    "focus": [
+      0.5,
+      0.27
+    ],
+    "variantOffset": [
+      0,
+      0
+    ]
+  },
+  "prokuror": {
+    "eyes": [
+      [
+        0.465,
+        0.2383,
+        0.021,
+        0.0078
+      ],
+      [
+        0.5525,
+        0.2308,
+        0.021,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.515,
+      "seam": 0.3095,
+      "w": 0.034,
+      "chin": 0.35,
+      "jawW": 0.065,
+      "curve": 0
+    },
+    "focus": [
+      0.51,
+      0.26
+    ],
+    "variantOffset": [
+      0,
+      0
+    ]
+  },
+  "kotib": {
+    "eyes": [
+      [
+        0.46,
+        0.2448,
+        0.021,
+        0.0078
+      ],
+      [
+        0.55,
+        0.2353,
+        0.021,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.515,
+      "seam": 0.3095,
+      "w": 0.033,
+      "chin": 0.35,
+      "jawW": 0.062,
+      "curve": 0
+    },
+    "focus": [
+      0.51,
+      0.26
+    ],
+    "variantOffset": [
+      0,
+      0
+    ]
+  },
+  "guvoh": {
+    "eyes": [
+      [
+        0.465,
+        0.2358,
+        0.021,
+        0.0078
+      ],
+      [
+        0.5475,
+        0.2304,
+        0.021,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.515,
+      "seam": 0.3046,
+      "w": 0.035,
+      "chin": 0.34,
+      "jawW": 0.066,
+      "curve": 0
+    },
+    "focus": [
+      0.51,
+      0.26
+    ],
+    "variantOffset": [
+      0,
+      0
+    ]
+  },
+  "himoyachi": {
+    "eyes": [
+      [
+        0.47,
+        0.2118,
+        0.022,
+        0.0078
+      ],
+      [
+        0.57,
+        0.2038,
+        0.022,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.53,
+      "seam": 0.284,
+      "w": 0.035,
+      "chin": 0.314,
+      "jawW": 0.066,
+      "curve": 0
+    },
+    "focus": [
+      0.52,
+      0.24
+    ],
+    "variantOffset": [
+      0,
+      0
+    ]
+  },
+  "sudlanuvchi": {
+    "eyes": [
+      [
+        0.415,
+        0.283,
+        0.024,
+        0.0078
+      ],
+      [
+        0.565,
+        0.28,
+        0.024,
+        0.0078
+      ]
+    ],
+    "mouth": {
+      "x": 0.506,
+      "seam": 0.378,
+      "w": 0.04,
+      "chin": 0.418,
+      "jawW": 0.07,
+      "curve": 0
+    },
+    "focus": [
+      0.5,
+      0.32
+    ],
+    "variantOffset": [
+      0,
+      0
+    ],
+    "_taxminiy": true
+  }
+}

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="uz" style="background:#04060b">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/intro/casecraft-emblem-64.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f1b33" />
+    <meta
+      name="description"
+      content="CaseCraft — 3D sud zalida AI personajlar bilan himoyachi sifatida sud majlisini mashq qilish uchun trenajyor. AI o‘quv simulyatsiyasi, to‘qima o‘quv ishi."
+    />
+    <title>CaseCraft — sud majlisi trenajyori</title>
+    <!-- Shriftlar sahifaning o‘zida: /intro/fonts (@font-face — src/intro/intro.css) -->
+    <link rel="preload" as="font" type="font/woff2" href="/intro/fonts/manrope-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/intro/fonts/cormorant-garamond-latin.woff2" crossorigin />
+    <!-- Ish papkasi (CaseBook) shriftlari ham @font-face da; bu belgi uning Google Fonts havolasini qo‘shishini to‘xtatadi -->
+    <link rel="prefetch" as="font" type="font/woff2" href="/intro/fonts/lora-latin.woff2" crossorigin data-casebook-fonts />
+    <link rel="preload" as="image" href="/intro/casecraft-logo-900.webp" type="image/webp" fetchpriority="high" />
+    <!-- Statik splash: JS dan oldin chiqadi, React tayyor bo‘lgach yumshoq yo‘qoladi (src/intro/ui/loading/splash.ts) -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #04060b;
+      }
+      #boot-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        padding: 24px;
+        background: radial-gradient(ellipse 70% 55% at 50% 42%, #13223f 0%, #0a1324 55%, #04060b 100%);
+        color: #f1ead9;
+        font-family: Manrope, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+        transition:
+          opacity 650ms ease,
+          visibility 0s linear 650ms;
+      }
+      #boot-splash[data-done] {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #boot-splash .bs-logo {
+        width: min(58vw, 300px);
+        height: auto;
+        filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.6));
+        animation: bs-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      #boot-splash .bs-line {
+        position: relative;
+        width: min(46vw, 220px);
+        height: 2px;
+        overflow: hidden;
+        border-radius: 2px;
+        background: rgba(201, 164, 92, 0.2);
+      }
+      #boot-splash .bs-line::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        width: 42%;
+        background: linear-gradient(90deg, transparent, #e2c88f, transparent);
+        box-shadow: 0 0 10px rgba(226, 200, 143, 0.7);
+        animation: bs-sweep 1.3s ease-in-out infinite;
+      }
+      #boot-splash .bs-ai {
+        position: absolute;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 4px 14px;
+        border: 1px solid rgba(201, 164, 92, 0.8);
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      @keyframes bs-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes bs-sweep {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(240%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot-splash {
+          transition-duration: 200ms;
+        }
+        #boot-splash .bs-logo,
+        #boot-splash .bs-line::after {
+          animation: none;
+        }
+        #boot-splash .bs-line::after {
+          width: 100%;
+          opacity: 0.6;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-splash" role="status" aria-label="CaseCraft yuklanmoqda">
+      <img class="bs-logo" src="/intro/casecraft-logo-900.webp" alt="CaseCraft" width="900" height="747" fetchpriority="high" />
+      <div class="bs-line" aria-hidden="true"></div>
+      <span class="bs-ai">AI o‘quv simulyatsiyasi</span>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/intro/main.tsx"></script>
+  </body>
+</html>

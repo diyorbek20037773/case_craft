@@ -1,0 +1,747 @@
+/*
+ * Pastki bo‘limlar (ui/InfoSections.tsx): jonli quvur, agent kartochkalari tilt/yaltirash, faktlar animatsiyasi,
+ * shaffoflik ustunlari. intro.css tokenlaridan foydalanadi. Egalik: Paket E1 (intro.css — Paket C niki, shuning
+ * uchun bu yerda).
+ * Harakat: prefers-reduced-motion va .q-low (quality==='low') da animatsiyalar o‘chadi, natija statik ko‘rinadi.
+ */
+
+/* ============================================================ Qanday ishlaydi — quvur */
+.pl {
+  --pl-T: 7s;
+  --pl-gold: #e2c88f;
+  --pl-bordo: #c8655f;
+  --pl-blue: #9fc3ff;
+}
+
+.pl-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.pl-node {
+  position: relative;
+  padding: 1rem 1.1rem 1.1rem;
+  text-align: left;
+}
+
+.pl-node-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pl-num {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-gold, #c9a45c);
+}
+
+.pl-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgb(241 234 217 / 0.28);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgb(241 234 217 / 0.86);
+}
+.pl-tag--kod {
+  border-color: rgb(226 200 143 / 0.6);
+  background: rgb(201 164 92 / 0.12);
+  color: var(--pl-gold);
+}
+.pl-tag--llm {
+  border-color: rgb(159 195 255 / 0.55);
+  background: rgb(159 195 255 / 0.08);
+  color: #d4e3ff;
+}
+.pl-tag--llm-kod {
+  border-color: rgb(159 195 255 / 0.45);
+  background: linear-gradient(90deg, rgb(159 195 255 / 0.1), rgb(201 164 92 / 0.14));
+  color: #e9e3d2;
+}
+.pl-tag--inson,
+.pl-tag--siz {
+  border-color: rgb(241 234 217 / 0.45);
+  color: var(--color-ivory, #f1ead9);
+}
+
+.pl-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-ivory, #f1ead9);
+}
+
+.pl-title svg {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--color-gold, #c9a45c);
+}
+
+.pl-sub {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgb(241 234 217 / 0.8);
+}
+
+.pl-points {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pl-points li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.93rem;
+  line-height: 1.38;
+  color: rgb(241 234 217 / 0.88);
+}
+.pl-points li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.5em;
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1.5px solid var(--color-gold, #c9a45c);
+  transform: rotate(45deg);
+}
+
+/* qisqa misol qatori (monospace) — matni kam tugunlarda */
+.pl-example {
+  margin: 0.6rem 0 0;
+  padding: 0.35rem 0.6rem;
+  border-left: 2px solid rgb(226 200 143 / 0.55);
+  border-radius: 0 6px 6px 0;
+  background: rgb(8 17 31 / 0.45);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgb(241 234 217 / 0.72);
+  overflow-wrap: anywhere;
+}
+.pl-example-k {
+  font-weight: 700;
+  color: var(--pl-gold);
+}
+.pl-example code {
+  font-family: 'Courier Prime', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.86rem;
+  color: #f1ead9;
+}
+
+/* darvoza — asosiy tugun: qo‘sh oltin chegara */
+.pl-node--gate {
+  border-color: rgb(226 200 143 / 0.6);
+  box-shadow:
+    inset 0 0 0 1px rgb(226 200 143 / 0.18),
+    0 0 0 4px rgb(226 200 143 / 0.06),
+    0 0 60px -14px rgb(201 164 92 / 0.45);
+}
+
+/* impuls kelganda yonadigan qatlam (faqat opacity animatsiya qilinadi) */
+.pl-node::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgb(226 200 143 / 0.85);
+  border-radius: inherit;
+  box-shadow: 0 0 36px -6px rgb(226 200 143 / 0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pl-reject-static {
+  display: none;
+  margin: 0.6rem 0 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px dashed rgb(200 101 95 / 0.7);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f1b9b4;
+}
+
+.pl-stamp {
+  position: absolute;
+  top: -0.85rem;
+  right: 0.7rem;
+  z-index: 3;
+  padding: 0.25rem 0.55rem;
+  border: 2px solid var(--pl-bordo);
+  border-radius: 6px;
+  background: rgb(52 14 16 / 0.92);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #ffc9c3;
+  box-shadow: 0 6px 18px -6px rgb(0 0 0 / 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-3deg) scale(1.3);
+}
+
+/* ---- bog‘lovchi chiziqlar (mobil va planshet: hammasi pastga) */
+.pl-link {
+  position: relative;
+  flex: none;
+  height: 2.6rem;
+}
+
+.pl-line {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  bottom: 9px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgb(201 164 92 / 0.2), rgb(226 200 143 / 0.75));
+}
+.pl-line::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid rgb(226 200 143 / 0.85);
+}
+
+.pl-pulse {
+  --pl-anim: pl-down;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff7df 0 30%, var(--pl-gold) 55%, rgb(201 164 92 / 0) 72%);
+  box-shadow: 0 0 14px 4px rgb(226 200 143 / 0.55);
+  opacity: 0;
+}
+.pl-pulse--reject {
+  --pl-anim: pl-reject-down;
+}
+
+/* Animatsiyalar faqat bo‘lim ko‘rinib turganda (.is-live); ko‘rinmasa — olib tashlanadi va boshidan boshlanadi */
+.pl.is-live .pl-pulse {
+  animation: var(--pl-anim) var(--pl-T) linear var(--d, 0s) infinite;
+}
+.pl.is-live .pl-node::after {
+  animation: pl-ping var(--pl-T) ease-out var(--d, 0s) infinite;
+}
+.pl.is-live .pl-node--gate::after {
+  animation-name: pl-gate;
+}
+.pl.is-live .pl-stamp {
+  animation: pl-stamp var(--pl-T) ease-out var(--d, 0s) infinite;
+}
+
+/* ---- legenda va izohlar */
+.pl-legend {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed rgb(226 200 143 / 0.28);
+  border-radius: 14px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: rgb(241 234 217 / 0.78);
+}
+.pl-legend-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.pl-legend-row .pl-tag {
+  flex: none;
+  min-width: 4.6rem;
+  justify-content: center;
+}
+
+.pl-notes {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 62rem;
+  margin: 1.6rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 0.92rem;
+  color: rgb(241 234 217 / 0.66);
+}
+
+/* ---- statik rejim (reduced-motion / lite) */
+.pl.is-static .pl-pulse,
+.pl.is-static .pl-stamp {
+  display: none;
+}
+.pl.is-static .pl-node::after {
+  animation: none;
+}
+.pl.is-static .pl-reject-static {
+  display: block;
+}
+
+/* ---- keng ekran: U shaklidagi oqim (1-qator chapdan o‘ngga, darvozadan pastga, 2-qator o‘ngdan chapga) */
+@media (min-width: 1100px) {
+  .pl-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2.6rem minmax(0, 1fr) 2.6rem minmax(0, 1fr) 2.6rem minmax(0, 1.18fr);
+    grid-template-rows: auto 2.8rem auto;
+    max-width: none;
+  }
+
+  .pl-node--siz {
+    grid-area: 1 / 1;
+  }
+  .pl-link[data-n='0'] {
+    grid-area: 1 / 2;
+  }
+  .pl-node--fsm {
+    grid-area: 1 / 3;
+  }
+  .pl-link[data-n='1'] {
+    grid-area: 1 / 4;
+  }
+  .pl-node--agents {
+    grid-area: 1 / 5;
+  }
+  .pl-link[data-n='2'] {
+    grid-area: 1 / 6;
+  }
+  .pl-node--gate {
+    grid-area: 1 / 7;
+  }
+  .pl-link[data-n='3'] {
+    grid-area: 2 / 7;
+  }
+  .pl-node--clerk {
+    grid-area: 3 / 7;
+  }
+  .pl-link[data-n='4'] {
+    grid-area: 3 / 6;
+  }
+  .pl-node--grade {
+    grid-area: 3 / 5;
+  }
+  .pl-link[data-n='5'] {
+    grid-area: 3 / 4;
+  }
+  .pl-node--teacher {
+    grid-area: 3 / 3;
+  }
+  .pl-legend {
+    grid-area: 3 / 1 / 4 / 3;
+    align-self: center;
+    margin: 0 1.2rem 0 0;
+  }
+
+  /* Balandlik kontentga teng (bo‘sh pastki yarim yo‘q). Qator balandligini eng baland tugun (darvoza) beradi;
+     qolganlari qator o‘rtasida — gorizontal o‘qlar (top:50%) ularning o‘rtasiga tushadi. Kotib tepaga
+     yopishadi: darvozadan tushgan o‘q uning ustki chetiga ulanadi. */
+  .pl-node--siz,
+  .pl-node--fsm,
+  .pl-node--agents,
+  .pl-node--grade,
+  .pl-node--teacher {
+    align-self: center;
+  }
+  .pl-node--clerk {
+    align-self: start;
+  }
+
+  .pl-link {
+    height: auto;
+  }
+
+  /* gorizontal chiziq (o‘ngga) */
+  .pl-link[data-dir='right'] .pl-line,
+  .pl-link[data-dir='left'] .pl-line {
+    left: 4px;
+    right: 9px;
+    top: 50%;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgb(201 164 92 / 0.2), rgb(226 200 143 / 0.75));
+  }
+  .pl-link[data-dir='right'] .pl-line::after {
+    left: auto;
+    right: -7px;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid rgb(226 200 143 / 0.85);
+  }
+  /* chapga (2-qator) */
+  .pl-link[data-dir='left'] .pl-line {
+    left: 9px;
+    right: 4px;
+    background: linear-gradient(270deg, rgb(201 164 92 / 0.2), rgb(226 200 143 / 0.75));
+  }
+  .pl-link[data-dir='left'] .pl-line::after {
+    left: -7px;
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 7px solid rgb(226 200 143 / 0.85);
+  }
+
+  .pl-link[data-dir='right'] .pl-pulse,
+  .pl-link[data-dir='left'] .pl-pulse {
+    left: 0;
+    top: 50%;
+    margin-left: 0;
+    margin-top: -5.5px;
+  }
+  .pl-link[data-dir='right'] .pl-pulse {
+    --pl-anim: pl-right;
+  }
+  .pl-link[data-dir='left'] .pl-pulse {
+    --pl-anim: pl-left;
+  }
+  .pl-link[data-dir='right'] .pl-pulse--reject {
+    --pl-anim: pl-reject-right;
+  }
+
+  .pl-node {
+    padding: 1rem 1rem 1.1rem;
+  }
+  .pl-sub,
+  .pl-points li {
+    font-size: 0.9rem;
+  }
+}
+
+/* ---- keyframes. T = 7 s; har bog‘lovchi 0,55 s kechikadi, yo‘l 9% (≈0,63 s) */
+@keyframes pl-down {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    top: calc(100% - 11px);
+    opacity: 1;
+  }
+  10%,
+  100% {
+    top: calc(100% - 11px);
+    opacity: 0;
+  }
+}
+@keyframes pl-right {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    left: calc(100% - 11px);
+    opacity: 1;
+  }
+  10%,
+  100% {
+    left: calc(100% - 11px);
+    opacity: 0;
+  }
+}
+@keyframes pl-left {
+  0% {
+    left: calc(100% - 11px);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    left: 0;
+    opacity: 1;
+  }
+  10%,
+  100% {
+    left: 0;
+    opacity: 0;
+  }
+}
+/* darvozaga yetib, qizil bo‘lib qaytadi */
+@keyframes pl-reject-right {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    left: calc(100% - 11px);
+    opacity: 1;
+    transform: scale(1);
+  }
+  10.5% {
+    left: calc(100% - 11px);
+    transform: scale(1.5);
+    background: radial-gradient(circle, #ffe1dc 0 30%, #c8655f 55%, rgb(200 101 95 / 0) 72%);
+    box-shadow: 0 0 16px 5px rgb(200 101 95 / 0.65);
+  }
+  22% {
+    left: 0;
+    opacity: 1;
+    transform: scale(1);
+    background: radial-gradient(circle, #ffe1dc 0 30%, #c8655f 55%, rgb(200 101 95 / 0) 72%);
+    box-shadow: 0 0 14px 4px rgb(200 101 95 / 0.55);
+  }
+  24%,
+  100% {
+    left: 0;
+    opacity: 0;
+  }
+}
+@keyframes pl-reject-down {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    top: calc(100% - 11px);
+    opacity: 1;
+    transform: scale(1);
+  }
+  10.5% {
+    top: calc(100% - 11px);
+    transform: scale(1.5);
+    background: radial-gradient(circle, #ffe1dc 0 30%, #c8655f 55%, rgb(200 101 95 / 0) 72%);
+    box-shadow: 0 0 16px 5px rgb(200 101 95 / 0.65);
+  }
+  22% {
+    top: 0;
+    opacity: 1;
+    transform: scale(1);
+    background: radial-gradient(circle, #ffe1dc 0 30%, #c8655f 55%, rgb(200 101 95 / 0) 72%);
+    box-shadow: 0 0 14px 4px rgb(200 101 95 / 0.55);
+  }
+  24%,
+  100% {
+    top: 0;
+    opacity: 0;
+  }
+}
+@keyframes pl-ping {
+  0% {
+    opacity: 1;
+  }
+  12%,
+  100% {
+    opacity: 0;
+  }
+}
+/* darvoza: 0% — o‘tgan impuls (oltin), ~41,4% — rad etilgan impuls (qizil). Sinxron: --d = 1,73 s, rad 4,63 s da */
+@keyframes pl-gate {
+  0% {
+    opacity: 1;
+    border-color: rgb(226 200 143 / 0.85);
+    box-shadow: 0 0 36px -6px rgb(226 200 143 / 0.6);
+  }
+  12%,
+  40.5% {
+    opacity: 0;
+    border-color: rgb(226 200 143 / 0.85);
+    box-shadow: 0 0 36px -6px rgb(226 200 143 / 0.6);
+  }
+  41% {
+    opacity: 0;
+    border-color: rgb(200 101 95 / 0.95);
+    box-shadow: 0 0 40px -4px rgb(200 101 95 / 0.7);
+  }
+  42.5% {
+    opacity: 1;
+    border-color: rgb(200 101 95 / 0.95);
+    box-shadow: 0 0 40px -4px rgb(200 101 95 / 0.7);
+  }
+  56%,
+  100% {
+    opacity: 0;
+    border-color: rgb(200 101 95 / 0.95);
+    box-shadow: 0 0 40px -4px rgb(200 101 95 / 0.7);
+  }
+}
+@keyframes pl-stamp {
+  0%,
+  41% {
+    opacity: 0;
+    transform: rotate(-3deg) scale(1.3);
+  }
+  43% {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1);
+  }
+  62% {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1);
+  }
+  66%,
+  100% {
+    opacity: 0;
+    transform: rotate(-3deg) scale(1);
+  }
+}
+
+/* ============================================================ Agent kartochkalari: tilt + oltin yaltirash */
+.ia-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background:
+    radial-gradient(circle at var(--ia-mx, 50%) var(--ia-my, 0%), rgb(255 228 170 / 0.22), transparent 44%),
+    linear-gradient(
+      115deg,
+      transparent calc(var(--ia-mx, 50%) - 22%),
+      rgb(255 236 190 / 0.1) var(--ia-mx, 50%),
+      transparent calc(var(--ia-mx, 50%) + 22%)
+    );
+  mix-blend-mode: screen;
+  transition: opacity 220ms ease;
+}
+@media (hover: hover) {
+  .agent-card:hover .ia-sheen,
+  .agent-card:focus-visible .ia-sheen {
+    opacity: 1;
+  }
+}
+
+.ia-caption {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 3;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid rgb(226 200 143 / 0.55);
+  border-radius: 999px;
+  background: rgb(8 17 31 / 0.6);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-soft, #e2c88f);
+}
+
+/* ============================================================ Faktlar: sanash, halqa, manba */
+.ia-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.ia-ring {
+  flex: none;
+  width: 3.4rem;
+  height: 3.4rem;
+  transform: rotate(-90deg);
+}
+.ia-ring circle {
+  fill: none;
+  stroke-width: 4;
+}
+.ia-ring-bg {
+  stroke: rgb(226 200 143 / 0.16);
+}
+.ia-ring-fg {
+  stroke: var(--color-gold-soft, #e2c88f);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 900ms cubic-bezier(0.3, 0.1, 0.3, 1);
+  filter: drop-shadow(0 0 4px rgb(226 200 143 / 0.5));
+}
+
+.ia-src {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 400ms ease 900ms,
+    transform 400ms ease 900ms;
+}
+.ia-facts.is-in .ia-src,
+.ia-facts.is-static .ia-src {
+  opacity: 1;
+  transform: none;
+}
+.ia-facts.is-static .ia-src,
+.ia-facts.is-static .ia-ring-fg {
+  transition: none;
+}
+
+/* ============================================================ Shaffoflik */
+.tr-where {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid rgb(226 200 143 / 0.28);
+  border-radius: 6px;
+  background: rgb(8 17 31 / 0.35);
+  font-family: ui-monospace, 'Courier Prime', 'Cascadia Mono', Consolas, monospace;
+  font-size: 0.78rem;
+  color: rgb(226 200 143 / 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-pulse,
+  .pl-stamp {
+    display: none;
+  }
+  .pl-node::after {
+    animation: none !important;
+  }
+  .pl-reject-static {
+    display: block;
+  }
+  .ia-sheen,
+  .ia-ring-fg,
+  .ia-src {
+    transition: none;
+  }
+}
+.q-low .ia-sheen {
+  display: none;
+}

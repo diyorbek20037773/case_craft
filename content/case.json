@@ -1,0 +1,92 @@
+{
+  "id": "case-001-noutbuk",
+  "title_uz": "Do'kondan noutbuk o'g'irlanishi",
+  "summary_uz": "TO'QIMA O'QUV ISHI (real shaxs va voqeaga aloqasi yo'q). 2026-yil 14-mart kuni kechqurun «Texnodunyo» do'konidan 5 400 000 so'mlik noutbuk yo'qolgan. Videoyozuvda o'g'rining yuzi ko'rinmaydi; do'kon sotuvchisi Mansur Rahimov tergov paytida fotosuratlar orasidan Anvar Sodiqovni «o'xshaydi» deb ko'rsatgan. Sudlanuvchi do'konda bo'lganini tan oladi, lekin noutbukni olmaganini aytadi. Talaba sudlanuvchining himoyachisi sifatida guvohni so'roq qiladi va qisqa muzokara nutqi so'zlaydi.",
+  "charge": {
+    "article": "Jinoyat kodeksi 169-modda (O'g'rilik)",
+    "text_uz": "Sodiqov A. o'zganing mulkini, ya'ni qiymati 5 400 000 so'm bo'lgan noutbukni do'kondan yashirincha talon-taroj qilishda ayblanmoqda. (Qism va miqdor belgilari yurist tomonidan tekshirilishi kerak: tekshirilmagan.)"
+  },
+  "defendant": {
+    "name": "Anvar Sodiqov",
+    "about_uz": "29 yoshda, to'qima shaxs. Ilgari sudlanmagan, kuryer bo'lib ishlaydi. Aybiga iqror emas: 14-mart kuni 19:15 da do'konda zaryadka kabeli sotib olganini, noutbukka tegmaganini aytadi."
+  },
+  "facts_uz": [
+    "2026-yil 14-mart, soat 19:41 atrofida «Texnodunyo» do'konining noutbuklar bo'limidan «ProBook 15» markali noutbuk qutisi yo'qolgan.",
+    "Noutbukning qiymati 5 400 000 so'm, buni inventarizatsiya dalolatnomasi tasdiqlaydi.",
+    "Kuzatuv kamerasi yozuvida qora kurtkali va kepkali erkak qutini sumkasiga solayotgani ko'rinadi; yuzi kamera ko'rinishida aniq emas.",
+    "Sudlanuvchi 19:15 da shu do'konda zaryadka kabeli sotib olgan, bu kassa chekida bor.",
+    "Sudlanuvchining uyidan va shaxsiy buyumlaridan noutbuk topilmagan.",
+    "Guvoh Mansur Rahimov tergov paytida 4 ta fotosuratdan Sodiqovni «o'xshaydi» deb ko'rsatgan.",
+    "Sudlanuvchi aybiga iqror emas."
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name_uz": "Kuzatuv kamerasi videoyozuvi",
+      "about_uz": "Soat 19:41. Qora kurtkali, kepkali erkak noutbuk qutisini sumkaga soladi. Yuz ko'rinmaydi, sifat past."
+    },
+    {
+      "id": "E2",
+      "name_uz": "Inventarizatsiya dalolatnomasi",
+      "about_uz": "Noutbuk yo'qligi va uning qiymati 5 400 000 so'm ekani qayd etilgan."
+    },
+    {
+      "id": "E3",
+      "name_uz": "Guvoh Rahimov M. ko'rsatuvi va fotosuratdan tanib olish bayonnomasi",
+      "about_uz": "Guvoh 4 ta fotosuratdan Sodiqovni «o'xshaydi» deb ko'rsatgan. Tanib olish sharoiti bayonnomada batafsil yozilmagan."
+    },
+    {
+      "id": "E4",
+      "name_uz": "Kassa cheki",
+      "about_uz": "Sodiqov A. 19:15 da zaryadka kabeli sotib olgan. Bu uning do'konda bo'lganini ko'rsatadi."
+    },
+    {
+      "id": "E5",
+      "name_uz": "Sudlanuvchining ko'rsatuvi",
+      "about_uz": "Do'konda bo'lganini tan oladi, noutbukni olmaganini aytadi, 19:30 da do'kondan chiqib ketganini bildiradi."
+    }
+  ],
+  "prosecutor_position_uz": "Davlat ayblovchisi: sudlanuvchi voqea kuni do'konda bo'lgan (kassa cheki), guvoh uni fotosuratdan «o'xshaydi» deb ko'rsatgan, kuzatuv yozuvidagi kiyim va qomat unga mos keladi. Dalillar yig'indisi uning aybini isbotlaydi, jazo tayinlashni so'raydi.",
+  "defense_brief_uz": "Himoya yo'nalishi: sudlanuvchining aybi bevosita dalil bilan isbotlanmagan. Yagona shaxsiy dalil — guvohning fotosuratdan «o'xshaydi» deb ko'rsatishi, uning ishonchliligi tekshirilishi kerak (masofa, ko'rish imkoniyati). Video yuzni ko'rsatmaydi, noutbuk sudlanuvchida topilmagan, do'konda bo'lishi o'zi aybni isbotlamaydi. Shubhalar sudlanuvchi foydasiga hal qilinishi kerak (aybsizlik prezumpsiyasi).",
+  "witness": {
+    "name": "Mansur Rahimov",
+    "role_uz": "«Texnodunyo» do'konining sotuvchi-maslahatchisi, voqea guvohi",
+    "persona_uz": "34 yosh, xotirjam, rasmiy so'zlaydi, aytganiga ishonchli. Faqat so'ralgan narsaga javob beradi, o'zi ortiqcha gapirmaydi. Yopiq (ha/yo'q) yo'naltiruvchi savolga ham ehtiyotkor: raislik qiluvchi savolni rad etsa, javob bermaydi. Bosim ostida xijolat bo'ladi, lekin yolg'on gapirmaydi. Hech qachon o'zi ko'zoynak mavzusini boshlamaydi.",
+    "public_facts_uz": [
+      "Men olti yildan beri shu do'konda sotuvchiman.",
+      "14-mart kuni ish vaqtimiz soat 20:00 gacha edi. Voqea soat 19:40 atrofida bo'ldi.",
+      "Noutbuklar javoni yonida qora kurtkali, kepkali erkakni ko'rdim. U qutini olib, sumkasiga soldi.",
+      "Men kassa peshtaxtasida turgandim. U yerdan javongacha taxminan 20 metr.",
+      "Men mijoz bilan band edim, shuning uchun darhol yaqinlashmadim.",
+      "Ertasi kuni tergovchi to'rtta fotosurat ko'rsatdi. Men Sodiqovni «o'xshaydi» dedim.",
+      "Sudlanuvchini ilgari tanimasdim."
+    ],
+    "prosecutor_exam": {
+      "q1_open": "Guvoh Rahimov, 14-mart kuni kechqurun do'konda nimani ko'rdingiz? Sudga aytib bering.",
+      "a1": "Men kassa peshtaxtasida turgandim. Taxminan 20 metr narida, noutbuklar javoni yonida qora kurtkali, kepkali erkak turardi. U qutini olib, sumkasiga soldi.",
+      "q2_leading": "Demak, siz javon yonida aynan sudlanuvchi Anvar Sodiqov ekanini ko'rdingiz, to'g'rimi?",
+      "a2": "Ha... o'xshaydi deb o'ylaganman."
+    },
+    "hidden_fact": {
+      "text_uz": "Mansur Rahimov uzoqni ko'rish uchun ko'zoynak taqadi. 14-mart kuni ko'zoynagi sinib qolgani sababli ish vaqtida ko'zoynaksiz edi va 20 metrdagi odamning yuzini aniq ko'rmagan. U o'sha erkakni yuzidan emas, kurtkasi va bo'yiga qarab eslab qolgan, fotosuratlarni ko'rsatganda ham shunga tayanib «o'xshaydi» degan. Buni tergovchiga aytmagan, chunki so'ramagan.",
+      "reveal_line_uz": "Rostini aytsam, o'sha kuni ko'zoynagim singan edi. Uzoqdan yuzini aniq ko'rmadim, faqat kurtkasi va bo'yiga qarab o'xshatdim.",
+      "reveal_when_uz": "Faqat himoyachi ochiq (yo'naltirmaydigan) savol bilan guvohning ko'rish imkoniyati, ko'rish sharoiti yoki ko'rishiga ta'sir qilgan holatlar (ko'zoynak, ko'rish qobiliyati) haqida so'ragandagina. Masalan: «Voqea paytida ko'rishingizga biror narsa ta'sir qilganmi?» yoki «Uzoqdagi narsalarni qanday ko'rasiz, o'sha kuni nima taqib yurgan edingiz?». «Siz ko'zoynaksiz edingiz, to'g'rimi?» kabi yo'naltiruvchi savolda ochilmaydi, raislik qiluvchi uni rad etadi.",
+      "reveal_keywords": [
+        "ko'zoynak",
+        "ko'zoynaksiz",
+        "ko'rish qobiliyati",
+        "ko'rishingiz",
+        "ko'rish sharoiti",
+        "ko'rish imkoniyati",
+        "yaxshi ko'rasizmi",
+        "aniq ko'rdingizmi",
+        "yuzini ko'rdingizmi",
+        "ko'rishingizga",
+        "linza",
+        "diopter",
+        "ko'zingiz"
+      ]
+    }
+  },
+  "stage_ids": ["ochilish", "guvoh_soroq", "muzokara", "oxirgi_soz"]
+}

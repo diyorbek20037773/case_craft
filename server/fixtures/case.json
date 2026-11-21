@@ -1,0 +1,44 @@
+{
+  "id": "demo-ogirlik-001",
+  "title_uz": "Do'kondan telefon o'g'irlanishi ishi (sintetik, FIXTURE)",
+  "summary_uz": "Sudlanuvchi Sardor Qodirov 2026-yil 3-mart kuni kechqurun mobil telefonlar do'konidan vitrinadagi telefonni o'g'irlashda ayblanmoqda. Asosiy dalil — sotuvchi guvohning ko'rsatmasi.",
+  "charge": {
+    "article": "JK 169-modda (FIXTURE — yurist tekshiradi)",
+    "text_uz": "O'zganing mulkini yashirin talon-toroj qilish (o'g'irlik)."
+  },
+  "defendant": {
+    "name": "Sardor Qodirov",
+    "about_uz": "24 yosh, ilgari sudlanmagan, kuryer bo'lib ishlaydi. Aybini tan olmaydi: o'sha kuni do'konga faqat telefon narxini so'rash uchun kirganini aytadi."
+  },
+  "facts_uz": [
+    "Voqea 2026-yil 3-mart kuni soat 19:40 atrofida \"Mobil Olam\" do'konida sodir bo'lgan.",
+    "Do'kondan bitta telefon yo'qolgan, narxi 4 200 000 so'm.",
+    "Sudlanuvchi do'konga kirgani videokamerada ko'rinadi, lekin vitrina kamera ko'rish maydonidan tashqarida.",
+    "Telefon sudlanuvchidan topilmagan."
+  ],
+  "evidence": [
+    {"id": "e1", "name_uz": "Videoyozuv", "about_uz": "Kirish eshigidagi kamera: sudlanuvchi 19:38 da kirib, 19:43 da chiqqan. Vitrina ko'rinmaydi."},
+    {"id": "e2", "name_uz": "Guvoh ko'rsatmasi", "about_uz": "Sotuvchi Dilnoza Rahimova sudlanuvchini vitrina yonida ko'rganini aytgan."},
+    {"id": "e3", "name_uz": "Inventarizatsiya dalolatnomasi", "about_uz": "Yopilish vaqtida bitta telefon yetishmasligi qayd etilgan."}
+  ],
+  "prosecutor_position_uz": "Sudlanuvchi do'konda bo'lgan, guvoh uni vitrina yonida ko'rgan, telefon o'sha vaqtda yo'qolgan. Ayblov to'liq isbotlangan.",
+  "defense_brief_uz": "Telefon sudlanuvchidan topilmagan, vitrina kamerada ko'rinmaydi. Ayblov faqat bitta guvoh ko'rsatmasiga tayanadi — uning ishonchliligini so'roqda tekshiring.",
+  "witness": {
+    "name": "Dilnoza Rahimova",
+    "role_uz": "Do'kon sotuvchisi, ayblov guvohi",
+    "persona_uz": "32 yosh, xushmuomala, lekin o'zini noqulay his qiladi. Qisqa javob beradi, aniq so'ralmagan narsani aytmaydi.",
+    "public_facts_uz": [
+      "Men o'sha kuni ertalab soat to'qqizdan kechgacha do'konda ishladim.",
+      "Kechqurun do'konda ikki-uch xaridor bor edi.",
+      "Sudlanuvchi vitrina yonida turganini ko'rdim, keyin u tez chiqib ketdi.",
+      "Telefon yo'qligini yopilish paytida, inventarizatsiyada bildim.",
+      "Men kassa oldida turgandim, vitrina kassadan taxminan o'n metr narida."
+    ],
+    "hidden_fact": {
+      "text_uz": "To'g'risini aytsam, o'sha kuni ko'zoynagimni uyda unutgan edim. Uzoqdan yuzlarni yaxshi ajrata olmayman.",
+      "reveal_when_uz": "Himoyachi guvohning ko'rish qobiliyati, ko'zoynagi yoki uzoqdan yuzni qanchalik aniq ko'ra olishi haqida so'rasa.",
+      "reveal_keywords": ["ko'zoynak", "ko'zingiz", "ko'rish qobiliyat", "yaxshi ko'ra olasiz", "aniq ko'rdingiz", "qanchalik aniq", "yuzini aniq"]
+    }
+  },
+  "stage_ids": ["tayyorlov", "sud_tergovi", "muzokara", "oxirgi_soz", "yakun"]
+}

@@ -1,0 +1,1212 @@
+{
+  "generated": "2026-11-20T19:11:26.984Z",
+  "regenerate": "cd web/scripts/meshy && node manifest.mjs",
+  "loader": "useGLTF(url, false, true) — meshopt dekoder shart (EXT_meshopt_compression), teksturalar WebP (EXT_texture_webp)",
+  "axes": "+Y yuqori, metr. Personaj oldi +Z. Jihozlar: \"front\" maydoni (taxmin)",
+  "sahnaClipNames": [
+    "idle",
+    "idle_b",
+    "sit_idle",
+    "sit_talk",
+    "sit_to_stand",
+    "stand_to_sit",
+    "talk",
+    "talk_b",
+    "walk"
+  ],
+  "skeletonJoints": [
+    "Hips",
+    "Spine02",
+    "Spine01",
+    "Spine",
+    "neck",
+    "Head",
+    "head_end",
+    "headfront",
+    "LeftShoulder",
+    "LeftArm",
+    "LeftForeArm",
+    "LeftHand",
+    "RightShoulder",
+    "RightArm",
+    "RightForeArm",
+    "RightHand",
+    "LeftUpLeg",
+    "LeftLeg",
+    "LeftFoot",
+    "LeftToeBase",
+    "RightUpLeg",
+    "RightLeg",
+    "RightFoot",
+    "RightToeBase"
+  ],
+  "totalsMb": {
+    "desktop": {
+      "characters": 11.91,
+      "props": 13.39,
+      "zalTextures": 3.77,
+      "all": 29.07
+    },
+    "mobile": {
+      "characters": 6.9,
+      "props": 4.75,
+      "zalTextures": 0.61,
+      "all": 12.26
+    }
+  },
+  "characters": {
+    "guvoh": {
+      "file": "/models/meshy/guvoh.glb",
+      "mobile": "/models/meshy/guvoh-mobile.glb",
+      "mb": 1.91,
+      "mobileMb": 1.06,
+      "triangles": 30929,
+      "heightM": 1.75,
+      "clipNaming": "eski (idle_a/talk_both/talk_right/think)",
+      "aliases": {
+        "idle": "idle_a",
+        "idle_b": "idle_b",
+        "talk": "talk_both",
+        "talk_b": "talk_right",
+        "walk": "walk",
+        "think": "think"
+      },
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "think",
+          "duration": 11.5
+        },
+        {
+          "name": "idle_a",
+          "duration": 1.867
+        },
+        {
+          "name": "idle_b",
+          "duration": 2
+        },
+        {
+          "name": "talk_both",
+          "duration": 3.967
+        },
+        {
+          "name": "talk_right",
+          "duration": 3.733
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          0,
+          0.964,
+          0.014
+        ],
+        "seatedAnchor": null,
+        "clips": {
+          "walk": {
+            "start": [
+              -0.001,
+              0.992,
+              0.047
+            ],
+            "end": [
+              -0.001,
+              0.992,
+              0.047
+            ]
+          },
+          "think": {
+            "start": [
+              0,
+              0.947,
+              0.034
+            ],
+            "end": [
+              -0.029,
+              0.945,
+              0.171
+            ]
+          },
+          "idle_a": {
+            "start": [
+              0,
+              0.911,
+              0.035
+            ],
+            "end": [
+              0,
+              0.91,
+              0.034
+            ]
+          },
+          "idle_b": {
+            "start": [
+              -0.002,
+              0.929,
+              0.034
+            ],
+            "end": [
+              -0.001,
+              0.929,
+              0.034
+            ]
+          },
+          "talk_both": {
+            "start": [
+              0.003,
+              0.914,
+              0.03
+            ],
+            "end": [
+              0.003,
+              0.914,
+              0.03
+            ]
+          },
+          "talk_right": {
+            "start": [
+              0.003,
+              0.914,
+              0.03
+            ],
+            "end": [
+              0.003,
+              0.914,
+              0.03
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    },
+    "himoyachi": {
+      "file": "/models/meshy/himoyachi.glb",
+      "mobile": "/models/meshy/himoyachi-mobile.glb",
+      "mb": 1.74,
+      "mobileMb": 1.05,
+      "triangles": 30777,
+      "heightM": 1.75,
+      "clipNaming": "sahna",
+      "missingSahnaClips": [
+        "sit_to_stand",
+        "stand_to_sit"
+      ],
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "sit_idle",
+          "duration": 10.667
+        },
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "sit_talk",
+          "duration": 9.667
+        },
+        {
+          "name": "talk",
+          "duration": 3.967
+        },
+        {
+          "name": "talk_b",
+          "duration": 3.733
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          0.009,
+          0.927,
+          -0.008
+        ],
+        "seatedAnchor": [
+          0.218,
+          0.553,
+          -0.34
+        ],
+        "clips": {
+          "walk": {
+            "start": [
+              0,
+              0.956,
+              0
+            ],
+            "end": [
+              0,
+              0.956,
+              0
+            ],
+            "anchor": "in-place (X/Z drift removed)",
+            "offsetApplied": [
+              0,
+              0,
+              -0.032
+            ]
+          },
+          "sit_idle": {
+            "start": [
+              0.218,
+              0.553,
+              -0.34
+            ],
+            "end": [
+              0.218,
+              0.553,
+              -0.34
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0,
+              0,
+              0
+            ]
+          },
+          "idle": {
+            "start": [
+              0,
+              0.895,
+              0
+            ],
+            "end": [
+              0.001,
+              0.895,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.001,
+              0,
+              -0.02
+            ]
+          },
+          "sit_talk": {
+            "start": [
+              0.218,
+              0.546,
+              -0.34
+            ],
+            "end": [
+              0.218,
+              0.546,
+              -0.34
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0.38,
+              -0.119,
+              -0.003
+            ]
+          },
+          "talk": {
+            "start": [
+              0,
+              0.881,
+              0
+            ],
+            "end": [
+              0,
+              0.881,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              -0.002,
+              0,
+              -0.02
+            ]
+          },
+          "talk_b": {
+            "start": [
+              0,
+              0.881,
+              0
+            ],
+            "end": [
+              0,
+              0.881,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              -0.002,
+              0,
+              -0.02
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    },
+    "prokuror": {
+      "file": "/models/meshy/prokuror.glb",
+      "mobile": "/models/meshy/prokuror-mobile.glb",
+      "mb": 1.85,
+      "mobileMb": 1.1,
+      "triangles": 30691,
+      "heightM": 1.75,
+      "clipNaming": "sahna",
+      "missingSahnaClips": [],
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "sit_idle",
+          "duration": 10.667
+        },
+        {
+          "name": "idle",
+          "duration": 1.867
+        },
+        {
+          "name": "sit_to_stand",
+          "duration": 6.167
+        },
+        {
+          "name": "sit_talk",
+          "duration": 9.667
+        },
+        {
+          "name": "stand_to_sit",
+          "duration": 4.733
+        },
+        {
+          "name": "talk",
+          "duration": 3.967
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          0.001,
+          0.868,
+          -0.023
+        ],
+        "seatedAnchor": [
+          0.207,
+          0.526,
+          -0.33
+        ],
+        "clips": {
+          "walk": {
+            "start": [
+              0,
+              0.902,
+              0
+            ],
+            "end": [
+              0,
+              0.902,
+              0
+            ],
+            "anchor": "in-place (X/Z drift removed)",
+            "offsetApplied": [
+              -0.001,
+              0,
+              -0.014
+            ]
+          },
+          "sit_idle": {
+            "start": [
+              0.207,
+              0.526,
+              -0.33
+            ],
+            "end": [
+              0.207,
+              0.526,
+              -0.33
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0,
+              0,
+              0
+            ]
+          },
+          "idle": {
+            "start": [
+              0,
+              0.827,
+              0
+            ],
+            "end": [
+              0,
+              0.827,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.002,
+              0,
+              -0.003
+            ]
+          },
+          "sit_to_stand": {
+            "start": [
+              0.207,
+              0.534,
+              -0.33
+            ],
+            "end": [
+              0.308,
+              0.869,
+              0.089
+            ],
+            "anchor": "start=seated-anchor",
+            "offsetApplied": [
+              0.216,
+              0,
+              0.381
+            ]
+          },
+          "sit_talk": {
+            "start": [
+              0.207,
+              0.517,
+              -0.33
+            ],
+            "end": [
+              0.207,
+              0.517,
+              -0.33
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0.359,
+              -0.111,
+              0.002
+            ]
+          },
+          "stand_to_sit": {
+            "start": [
+              0.171,
+              0.866,
+              0.03
+            ],
+            "end": [
+              0.207,
+              0.528,
+              -0.33
+            ],
+            "anchor": "end=seated-anchor",
+            "offsetApplied": [
+              0.071,
+              0,
+              0.248
+            ]
+          },
+          "talk": {
+            "start": [
+              0,
+              0.833,
+              0
+            ],
+            "end": [
+              0,
+              0.833,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.002,
+              0,
+              -0.006
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    },
+    "kotib": {
+      "file": "/models/meshy/kotib.glb",
+      "mobile": "/models/meshy/kotib-mobile.glb",
+      "mb": 1.96,
+      "mobileMb": 1.15,
+      "triangles": 30985,
+      "heightM": 1.68,
+      "clipNaming": "sahna",
+      "missingSahnaClips": [
+        "talk"
+      ],
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "sit_idle",
+          "duration": 11.333
+        },
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "sit_to_stand",
+          "duration": 4.7
+        },
+        {
+          "name": "sit_talk",
+          "duration": 9.667
+        },
+        {
+          "name": "stand_to_sit",
+          "duration": 4.733
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          0.004,
+          0.962,
+          -0.001
+        ],
+        "seatedAnchor": [
+          0.263,
+          0.659,
+          -0.737
+        ],
+        "clips": {
+          "walk": {
+            "start": [
+              0,
+              0.99,
+              0
+            ],
+            "end": [
+              0,
+              0.99,
+              0
+            ],
+            "anchor": "in-place (X/Z drift removed)",
+            "offsetApplied": [
+              0,
+              0,
+              -0.05
+            ]
+          },
+          "sit_idle": {
+            "start": [
+              0.263,
+              0.659,
+              -0.737
+            ],
+            "end": [
+              0.263,
+              0.659,
+              -0.737
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0,
+              0,
+              0
+            ]
+          },
+          "idle": {
+            "start": [
+              0,
+              0.926,
+              0
+            ],
+            "end": [
+              0.001,
+              0.926,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.001,
+              0,
+              -0.036
+            ]
+          },
+          "sit_to_stand": {
+            "start": [
+              0.263,
+              0.645,
+              -0.737
+            ],
+            "end": [
+              0.334,
+              0.951,
+              -0.351
+            ],
+            "anchor": "start=seated-anchor",
+            "offsetApplied": [
+              0.261,
+              0,
+              -0.767
+            ]
+          },
+          "sit_talk": {
+            "start": [
+              0.263,
+              0.657,
+              -0.737
+            ],
+            "end": [
+              0.263,
+              0.657,
+              -0.737
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0.432,
+              -0.028,
+              -0.397
+            ]
+          },
+          "stand_to_sit": {
+            "start": [
+              0.226,
+              0.949,
+              -0.317
+            ],
+            "end": [
+              0.263,
+              0.561,
+              -0.737
+            ],
+            "anchor": "end=seated-anchor",
+            "offsetApplied": [
+              0.115,
+              0,
+              -0.103
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    },
+    "sudya": {
+      "file": "/models/meshy/sudya.glb",
+      "mobile": "/models/meshy/sudya-mobile.glb",
+      "mb": 2.11,
+      "mobileMb": 1.29,
+      "triangles": 30688,
+      "heightM": 1.75,
+      "clipNaming": "sahna",
+      "missingSahnaClips": [],
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "sit_idle",
+          "duration": 10.667
+        },
+        {
+          "name": "idle",
+          "duration": 1.867
+        },
+        {
+          "name": "sit_to_stand",
+          "duration": 6.167
+        },
+        {
+          "name": "sit_talk",
+          "duration": 9.667
+        },
+        {
+          "name": "stand_to_sit",
+          "duration": 4.733
+        },
+        {
+          "name": "talk",
+          "duration": 3.733
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          0.003,
+          0.937,
+          0.028
+        ],
+        "seatedAnchor": [
+          0.229,
+          0.556,
+          -0.332
+        ],
+        "clips": {
+          "walk": {
+            "start": [
+              0,
+              0.994,
+              0
+            ],
+            "end": [
+              0,
+              0.994,
+              0
+            ],
+            "anchor": "in-place (X/Z drift removed)",
+            "offsetApplied": [
+              0.008,
+              0,
+              -0.079
+            ]
+          },
+          "sit_idle": {
+            "start": [
+              0.229,
+              0.556,
+              -0.332
+            ],
+            "end": [
+              0.229,
+              0.556,
+              -0.332
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0,
+              0,
+              0
+            ]
+          },
+          "idle": {
+            "start": [
+              0,
+              0.908,
+              0
+            ],
+            "end": [
+              0,
+              0.908,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.01,
+              0,
+              -0.066
+            ]
+          },
+          "sit_to_stand": {
+            "start": [
+              0.229,
+              0.564,
+              -0.332
+            ],
+            "end": [
+              0.349,
+              0.955,
+              0.159
+            ],
+            "anchor": "start=seated-anchor",
+            "offsetApplied": [
+              0.25,
+              0,
+              0.443
+            ]
+          },
+          "sit_talk": {
+            "start": [
+              0.229,
+              0.549,
+              -0.332
+            ],
+            "end": [
+              0.229,
+              0.549,
+              -0.332
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0.413,
+              -0.129,
+              -0.006
+            ]
+          },
+          "stand_to_sit": {
+            "start": [
+              0.189,
+              0.953,
+              0.1
+            ],
+            "end": [
+              0.229,
+              0.553,
+              -0.332
+            ],
+            "anchor": "end=seated-anchor",
+            "offsetApplied": [
+              0.083,
+              0,
+              0.295
+            ]
+          },
+          "talk": {
+            "start": [
+              0,
+              0.913,
+              0
+            ],
+            "end": [
+              0,
+              0.913,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.007,
+              0,
+              -0.062
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    },
+    "sudlanuvchi": {
+      "file": "/models/meshy/sudlanuvchi.glb",
+      "mobile": "/models/meshy/sudlanuvchi-mobile.glb",
+      "mb": 2.34,
+      "mobileMb": 1.25,
+      "triangles": 30826,
+      "heightM": 1.8,
+      "clipNaming": "sahna",
+      "missingSahnaClips": [
+        "talk"
+      ],
+      "clips": [
+        {
+          "name": "walk",
+          "duration": 1.033
+        },
+        {
+          "name": "sit_idle",
+          "duration": 10.667
+        },
+        {
+          "name": "idle",
+          "duration": 2
+        },
+        {
+          "name": "sit_to_stand",
+          "duration": 6.167
+        },
+        {
+          "name": "sit_talk",
+          "duration": 9.667
+        },
+        {
+          "name": "stand_to_sit",
+          "duration": 4.733
+        }
+      ],
+      "hipsMeters": {
+        "rest": [
+          -0.002,
+          0.933,
+          -0.01
+        ],
+        "seatedAnchor": [
+          0.209,
+          0.561,
+          -0.351
+        ],
+        "clips": {
+          "walk": {
+            "start": [
+              0,
+              0.963,
+              0
+            ],
+            "end": [
+              0,
+              0.963,
+              0
+            ],
+            "anchor": "in-place (X/Z drift removed)",
+            "offsetApplied": [
+              0.01,
+              0,
+              -0.017
+            ]
+          },
+          "sit_idle": {
+            "start": [
+              0.209,
+              0.561,
+              -0.351
+            ],
+            "end": [
+              0.209,
+              0.561,
+              -0.351
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0,
+              0,
+              0
+            ]
+          },
+          "idle": {
+            "start": [
+              0,
+              0.902,
+              0
+            ],
+            "end": [
+              0.001,
+              0.902,
+              0
+            ],
+            "anchor": "origin-at-start",
+            "offsetApplied": [
+              0.011,
+              0,
+              -0.006
+            ]
+          },
+          "sit_to_stand": {
+            "start": [
+              0.209,
+              0.569,
+              -0.351
+            ],
+            "end": [
+              0.317,
+              0.926,
+              0.094
+            ],
+            "anchor": "start=seated-anchor",
+            "offsetApplied": [
+              0.229,
+              0,
+              0.404
+            ]
+          },
+          "sit_talk": {
+            "start": [
+              0.209,
+              0.554,
+              -0.351
+            ],
+            "end": [
+              0.209,
+              0.554,
+              -0.351
+            ],
+            "anchor": "seated-anchor",
+            "offsetApplied": [
+              0.38,
+              -0.118,
+              -0.001
+            ]
+          },
+          "stand_to_sit": {
+            "start": [
+              0.171,
+              0.925,
+              0.034
+            ],
+            "end": [
+              0.209,
+              0.56,
+              -0.351
+            ],
+            "anchor": "end=seated-anchor",
+            "offsetApplied": [
+              0.076,
+              0,
+              0.265
+            ]
+          }
+        }
+      },
+      "skeleton": {
+        "joints": 24,
+        "sameAsGuvoh": "nomlar, tartib va ierarxiya bir xil (inspect-skel.mjs); rest pozasi farq qiladi — arms.ts rest ni modeldan oladi"
+      }
+    }
+  },
+  "props": {
+    "chiroq": {
+      "file": "/models/meshy/props/chiroq.glb",
+      "mobile": "/models/meshy/props/chiroq-mobile.glb",
+      "mb": 1.09,
+      "mobileMb": 0.29,
+      "triangles": 2436,
+      "sizeMeters": {
+        "x": 1.2,
+        "y": 0.216,
+        "z": 1.2
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": null,
+      "note": "yumaloq shift chirog'i (aylanma simmetrik, yo'nalishsiz). Tagi y=0 — shiftga: y = shift_balandligi - 0.216"
+    },
+    "ekran": {
+      "file": "/models/meshy/props/ekran.glb",
+      "mobile": "/models/meshy/props/ekran-mobile.glb",
+      "mb": 1.23,
+      "mobileMb": 0.4,
+      "triangles": 3173,
+      "sizeMeters": {
+        "x": 1.6,
+        "y": 0.934,
+        "z": 0.097
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 180,
+      "front": "+Z",
+      "note": "--rotate 180 bilan burildi: tekis displey paneli +Z da, orqa korpus -Z da. Devorga osiladi"
+    },
+    "eshik": {
+      "file": "/models/meshy/props/eshik.glb",
+      "mobile": "/models/meshy/props/eshik-mobile.glb",
+      "mb": 1.45,
+      "mobileMb": 0.49,
+      "triangles": 4803,
+      "sizeMeters": {
+        "x": 1.9,
+        "y": 2.438,
+        "z": 0.277
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "deyarli simmetrik; romi/qoplamasi +Z ga chiqqan (massa markazi +Z, detal +Z da ko'p). Devorga: orqasi (-Z) devorga"
+    },
+    "himoyachi-stoli": {
+      "file": "/models/meshy/props/himoyachi-stoli.glb",
+      "mobile": "/models/meshy/props/himoyachi-stoli-mobile.glb",
+      "mb": 1.48,
+      "mobileMb": 0.55,
+      "triangles": 13166,
+      "sizeMeters": {
+        "x": 1.8,
+        "y": 1.062,
+        "z": 1.083
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "layout.ts rotY=-PI/2 shu taxminga asoslangan"
+    },
+    "kotib-stoli": {
+      "file": "/models/meshy/props/kotib-stoli.glb",
+      "mobile": "/models/meshy/props/kotib-stoli-mobile.glb",
+      "mb": 1.44,
+      "mobileMb": 0.52,
+      "triangles": 13174,
+      "sizeMeters": {
+        "x": 1.5,
+        "y": 0.982,
+        "z": 0.997
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "-Z",
+      "note": "zal tomoni -Z, kreslo +Z da (layout.ts rotY=PI+0.35)"
+    },
+    "minbar": {
+      "file": "/models/meshy/props/minbar.glb",
+      "mobile": "/models/meshy/props/minbar-mobile.glb",
+      "mb": 1.25,
+      "mobileMb": 0.43,
+      "triangles": 13363,
+      "sizeMeters": {
+        "x": 0.667,
+        "y": 1.34,
+        "z": 0.55
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "Meshy odatiy yo'nalishi; layout.ts STAND_ROT_Y bilan ishlatilmoqda"
+    },
+    "prokuror-stoli": {
+      "file": "/models/meshy/props/prokuror-stoli.glb",
+      "mobile": "/models/meshy/props/prokuror-stoli-mobile.glb",
+      "mb": 1.14,
+      "mobileMb": 0.47,
+      "triangles": 13489,
+      "sizeMeters": {
+        "x": 1.8,
+        "y": 1.019,
+        "z": 1.224
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "layout.ts rotY=PI/2 shu taxminga asoslangan"
+    },
+    "skameyka": {
+      "file": "/models/meshy/props/skameyka.glb",
+      "mobile": "/models/meshy/props/skameyka-mobile.glb",
+      "mb": 1.59,
+      "mobileMb": 0.51,
+      "triangles": 12517,
+      "sizeMeters": {
+        "x": 2.219,
+        "y": 0.9,
+        "z": 1.785
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "ikki qator o'rindiq; har qatorda suyanchiq -Z tomonda, o'tiruvchi +Z ga qaraydi"
+    },
+    "sudlanuvchi-orni": {
+      "file": "/models/meshy/props/sudlanuvchi-orni.glb",
+      "mobile": "/models/meshy/props/sudlanuvchi-orni-mobile.glb",
+      "mb": 1.25,
+      "mobileMb": 0.48,
+      "triangles": 11537,
+      "sizeMeters": {
+        "x": 2.2,
+        "y": 0.957,
+        "z": 1.608
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "+Z",
+      "note": "layout.ts rotY=-PI/2 shu taxminga asoslangan"
+    },
+    "sudya-stoli": {
+      "file": "/models/meshy/props/sudya-stoli.glb",
+      "mobile": "/models/meshy/props/sudya-stoli-mobile.glb",
+      "mb": 1.47,
+      "mobileMb": 0.61,
+      "triangles": 15969,
+      "sizeMeters": {
+        "x": 2.5,
+        "y": 0.881,
+        "z": 1.332
+      },
+      "origin": "tagi y=0, markazi x/z=0",
+      "rotateDegApplied": 0,
+      "front": "-Z",
+      "note": "zal tomoni -Z, kreslo +Z da (layout.ts rotY=PI bilan ishlatilmoqda)"
+    }
+  },
+  "texturePadding": "personaj teksturalari UV dilation bilan (scripts/meshy/dilate.mjs) — generateMipmaps xavfsiz"
+}

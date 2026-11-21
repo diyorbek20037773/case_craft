@@ -1,0 +1,17 @@
+# server/Dockerfile konteksti (loyiha ildizi)
+.git
+.github
+**/.env
+!**/.env.example
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.venv
+**/venv
+server/cache/*
+!server/cache/.gitkeep
+server/logs/*
+web
+*.bat
+*.md
+!content/**/*.md
