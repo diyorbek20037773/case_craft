@@ -27,3 +27,8 @@
 
 ## 3D zal va personajlar
 - `public/models/meshy/zal/CREDITS.md` va `public/env/CREDITS.md` ga qarang (Poly Haven, CC0; Meshy).
+
+## Rasmlar (art/)
+- `mode-talim.webp`, `mode-majlis.webp`, `mode-dostlar.webp`, `dalil-cctv.webp`, `og-cover.jpg` — shu loyiha uchun
+  ChatGPT (OpenAI image generation) yordamida yaratilgan, so‘ng tahrirlangan va siqilgan (webp/jpg). Rasmlardagi odamlar
+  va joylar to‘qima; real shaxslar yoki real kuzatuv kamerasi yozuvi emas.

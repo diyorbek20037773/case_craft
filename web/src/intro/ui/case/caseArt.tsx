@@ -99,17 +99,35 @@ function useCctvClock(live: boolean) {
   return `19:41:${String(2 + (run ? tick : 0)).padStart(2, '0')}`
 }
 
+/** E1 kadri (oq-qora, donador; o‘ng past burchak bo‘sh — soat shu yerda) */
+const CCTV_SRC = '/intro/art/dalil-cctv.webp'
+const CCTV_IMG_STYLE = {
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  objectPosition: '40% 50%',
+} as const
+
 /**
- * E1: kuzatuv kamerasi kadri (CSS + SVG, real yuz yo‘q). live — dalil sahifasidagi katta kadr:
- * skanlayn, 2 fps shovqin, miltillovchi REC, yuruvchi soat.
+ * E1: kuzatuv kamerasi kadri (rasm + CSS qatlamlar). live — dalil sahifasidagi katta kadr:
+ * skanlayn, 2 fps shovqin, miltillovchi REC, yuruvchi soat. Muqova ichidagi kichik nusxa — statik.
  */
 export function CctvStill({ live = false }: { live?: boolean }) {
   const time = useCctvClock(live)
   return (
     <div className={'cb-cctv' + (live ? ' is-live' : '')} aria-hidden>
-      <div className="cb-cctv__shelf" />
-      <div className="cb-cctv__box" />
-      <Silhouette className="cb-cctv__man" />
+      <img
+        src={CCTV_SRC}
+        alt=""
+        width={1200}
+        height={800}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        style={CCTV_IMG_STYLE}
+      />
       <span className="cb-cctv__noise" />
       <span className="cb-cctv__scan" />
       <span className="cb-cctv__rec">

@@ -1367,3 +1367,64 @@ body {
     transition: none;
   }
 }
+
+/* ---------- Rejim kartasi fon rasmi (/intro/art/mode-*.webp): subyekt chapda, ustida navy gradient ---------- */
+.mode-card {
+  isolation: isolate;
+}
+.mode-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.mode-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* tor/qisqa (mobil, gorizontal) karta: subyekt (chap uchdan bir) ko‘rinadigan qisqa kesim */
+  object-position: 18% 32%;
+  transition: transform 600ms var(--ease-out);
+}
+/* matn o‘qilishi: mobilda matn ikonkadan o‘ngda — chapdan o‘ngga quyuqlashadi (≥4.5:1) */
+.mode-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(9 17 34 / 0.5) 0%, rgb(9 17 34 / 0.84) 26%, rgb(9 17 34 / 0.9) 100%);
+}
+@media (min-width: 64rem) {
+  .mode-art img {
+    object-position: 22% 50%;
+  }
+  /* katta (vertikal) karta: tepada rasm ko‘proq, sarlavha va matn ostida quyuq navy */
+  .mode-art::after {
+    background: linear-gradient(
+      180deg,
+      rgb(9 17 34 / 0.42) 0%,
+      rgb(9 17 34 / 0.62) 24%,
+      rgb(9 17 34 / 0.84) 42%,
+      rgb(9 17 34 / 0.92) 100%
+    );
+  }
+}
+.mode-card:is(:hover, [data-active='true']):not([data-dim='true']) .mode-art img {
+  transform: scale(1.04);
+}
+/* zaif qurilma / kam harakat: rasm qoladi, qo‘shimcha effekt yo‘q */
+.q-low .mode-art img,
+.q-low .mode-card:is(:hover, [data-active='true']) .mode-art img {
+  transition: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mode-art img,
+  .mode-card:is(:hover, [data-active='true']) .mode-art img {
+    transition: none;
+    transform: none;
+  }
+}

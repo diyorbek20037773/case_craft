@@ -123,6 +123,10 @@ export function ModeScreen() {
                   onPointerEnter={() => show(i)}
                   className="glass-strong mode-card h-full w-full items-center gap-4 p-4 sm:p-5 lg:flex-col lg:items-center lg:gap-0 lg:px-7 lg:pb-8 lg:pt-8 lg:text-center"
                 >
+                  {/* fon rasmi (bezak): /intro/art/mode-{id}.webp — ustida navy gradient (intro.css .mode-art) */}
+                  <span className="mode-art" aria-hidden>
+                    <img src={`/intro/art/mode-${m.id}.webp`} alt="" width={1200} height={800} loading="lazy" decoding="async" draggable={false} />
+                  </span>
                   <span
                     className="absolute right-3 top-3 hidden size-7 items-center justify-center rounded-md border border-ivory/20 text-xs font-bold text-ivory/60 lg:inline-flex"
                     aria-hidden

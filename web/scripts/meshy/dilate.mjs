@@ -7,6 +7,10 @@
 //   node dilate.mjs <glb> [<glb> ...] [--radius 16] [--embedded] [--source <glb|zip|papka>] [--q 88] [--no-manifest]
 //   node dilate.mjs ../../public/models/meshy/sudya.glb ../../public/models/meshy/sudya-mobile.glb
 //
+// Qorong'i kiyim tozalash (cloth.mjs, CLOTH_ROLES dagi rollar — sudya, prokuror): mato texellarida roughness ~0.92, metal 0,
+// normal og'ishi 0.45, baseColor xromasi mato rangiga + mayda nuqtalar olib tashlanadi. Teri/soch/yoqa/nishon tegilmaydi.
+// O'chirish: --no-cloth. Qo'shimcha rol: --cloth <rol>[,<rol>] (maxLum 60).
+//
 // Manba (eng yaxshi sifat): materials/3d/meshy/<rol>/ dagi asl Meshy GLB (zip bo'lsa faqat *Merged_Animations.glb vaqtincha
 // ochiladi). Asl tekstura asl o'lchamda niqob alfa sifatida qo'shilib premultiplied lanczos3 bilan kichraytiriladi (qora
 // bo'shliq chetga oqmaydi), so'ng nishon o'lchamida (2048/1024) dilation. --embedded: GLB ning o'zidagi WebP ishlatiladi.
@@ -20,6 +24,7 @@ import { NodeIO } from '@gltf-transform/core'
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions'
 import { MeshoptDecoder, MeshoptEncoder } from 'meshoptimizer'
 import sharp from 'sharp'
+import { applyCloth, CLOTH_ROLES, clothWeights } from './cloth.mjs'
 import { execFileSync } from 'node:child_process'
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -304,12 +309,13 @@ function erode(src, w, h, r, dx, dy) {
   }
   return out
 }
-export async function padTexture(srcImage, srcMask, tw, th, { radius = 16 } = {}) {
+export async function padTexture(srcImage, srcMask, tw, th, { radius = 16, transform = null } = {}) {
   const meta = await sharp(Buffer.from(srcImage)).metadata()
   const sw = meta.width
   const sh = meta.height
   const rgb = await sharp(Buffer.from(srcImage)).removeAlpha().toColourspace('srgb').raw().toBuffer()
   if (rgb.length !== sw * sh * 3) throw new Error(`kutilmagan raw o'lcham: ${rgb.length} != ${sw}x${sh}x3`)
+  if (transform) transform(rgb, sw, sh) // masalan cloth.mjs: qorong'i kiyim tozalash (asl o'lchamda, kichraytirishdan oldin)
   const same = sw === tw && sh === th
   const lanczos = same
     ? rgb
@@ -517,6 +523,10 @@ async function main() {
   const qArg = flag('--q')
   const embedded = bool('--embedded')
   const noManifest = bool('--no-manifest')
+  const noCloth = bool('--no-cloth')
+  const clothExtra = flag('--cloth')
+  const clothRoles = noCloth ? {} : { ...CLOTH_ROLES }
+  if (clothExtra && !noCloth) for (const r of clothExtra.split(',')) clothRoles[r.trim()] ??= { maxLum: 60 }
   const files = args.map((f) => resolve(f))
   if (!files.length) {
     console.error('node dilate.mjs <glb> [<glb> ...] [--radius 16] [--embedded] [--source <glb|zip|papka>] [--q 88] [--no-manifest]')
@@ -571,6 +581,9 @@ async function main() {
 
       // 4) har tekstura
       const texRows = []
+      const clothCfg = clothRoles[role]
+      const clothCache = new Map() // material nomi -> clothWeights natijasi (asl baseColor dan)
+      if (clothCfg && !src) console.warn(`  ! cloth: asl manba yo'q — embedded tekstura ustida ishlaydi`)
       for (const tex of root.listTextures()) {
         const uses = textureUses(root, tex)
         if (!uses.length || !tex.getImage()) continue
@@ -600,7 +613,35 @@ async function main() {
         const mask = uvMask(srcPrims, sMeta.width, sMeta.height)
         let srcCov = 0
         for (let i = 0; i < mask.length; i++) if (mask[i]) srcCov++
-        const { raw, coverage } = await padTexture(srcImage, mask, meta.width, meta.height, { radius })
+        // qorong'i kiyim tozalash: vaznlar shu materialning (manbadagi) baseColor idan, shu o'lchamda
+        let transform = null
+        let clothInfo = ''
+        const slot = uses[0].slot
+        if (clothCfg && ['baseColor', 'metallicRoughness', 'normal'].includes(slot)) {
+          const mat = uses[0].material
+          const sr = src ? src.doc.getRoot() : root
+          const sm = sr.listMaterials().find((m) => m.getName() === mat.getName()) ?? mat
+          const bcTex = sm.getBaseColorTexture()
+          const key = `${sm.getName()}@${sMeta.width}`
+          if (bcTex?.getImage() && !clothCache.has(key)) {
+            const bm = await sharp(Buffer.from(bcTex.getImage())).metadata()
+            if (bm.width === sMeta.width && bm.height === sMeta.height) {
+              const bcRaw = await sharp(Buffer.from(bcTex.getImage())).removeAlpha().toColourspace('srgb').raw().toBuffer()
+              const bcMask = uvMask(primitivesFor(sr, bcTex), bm.width, bm.height)
+              const cw = clothWeights(bcRaw, bcMask, bm.width, bm.height, clothCfg)
+              clothCache.set(key, cw)
+              if (cw) console.log(`  cloth: mato rangi rgb(${cw.color.map((v) => v.toFixed(0)).join(',')}), mato ${cw.pct}% atlas`)
+            } else clothCache.set(key, null)
+          }
+          const cw = clothCache.get(key)
+          if (cw) {
+            transform = (rgb) => {
+              const n = applyCloth(slot, rgb, cw)
+              clothInfo = ` cloth ${slot}: ${((n / cw.wide.length) * 100).toFixed(1)}% texel`
+            }
+          }
+        }
+        const { raw, coverage } = await padTexture(srcImage, mask, meta.width, meta.height, { radius, transform })
         const before = tex.getImage().byteLength
         const webp = await sharp(raw, { raw: { width: meta.width, height: meta.height, channels: 3 } })
           .webp(webpOptions(isNormal, q))
@@ -618,7 +659,7 @@ async function main() {
           kbAfter: +(webp.length / 1024).toFixed(0),
         }
         texRows.push(row)
-        console.log(`  ${row.texture} [${row.slots}] ${row.from} ${row.srcPx}->${row.px} qamrov ${row.maskCoveragePct}% (nishon ${row.targetCoveragePct}%), ${row.kbBefore} -> ${row.kbAfter} KB`)
+        console.log(`  ${row.texture} [${row.slots}] ${row.from} ${row.srcPx}->${row.px} qamrov ${row.maskCoveragePct}% (nishon ${row.targetCoveragePct}%), ${row.kbBefore} -> ${row.kbAfter} KB${clothInfo}`)
       }
 
       // 5) yozish: vaqtinchalik fayl -> tekshiruv -> asl o'rniga
