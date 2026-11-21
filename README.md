@@ -1,5 +1,7 @@
 # CaseCraft — sud trenajyori
 
+![CaseCraft — 3D sud zali trenajyori: rol tanlash, tuzoq savol, yashirin fakt, baho](docs/casecraft-preview.jpg)
+
 AI asosidagi o'quv simulyatsiyasi: talaba himoyachi rolida, sudya, prokuror va guvoh — AI. 3D sud zali, ovozli
 muloqot (STT/TTS), o'qituvchi paneli. Bu real sud qarori emas.
 
